@@ -1,0 +1,32 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="Server Preferences" >
+        <EditTextPreference
+            android:defaultValue="8080"
+            android:dialogTitle="Change Port"
+            android:key="k_server_port"
+            android:summary="Click to change default port"
+            android:title="Update Port" />
+        <EditTextPreference
+            android:defaultValue="htdocs"
+            android:dialogTitle=""
+            android:key="k_docs_dir"
+            android:summary="The directory to serve your web documents"
+            android:title="Web Documents path(/mnt/sdcard/)" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Mysql Server Settings (Shell)" >
+        <EditTextPreference
+            android:defaultValue="root"
+            android:dialogTitle="Choose username for mysql"
+            android:key="k_mysql_username"
+            android:summary="Click to change default mysql username"
+            android:title="Update Username" />
+        <EditTextPreference
+            android:defaultValue=""
+            android:dialogTitle="Choose password for user"
+            android:key="k_mysql_password"
+            android:summary="Click to change password for username"
+            android:title="Update Password" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

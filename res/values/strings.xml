@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="application_name">DroidPHP</string>
+    <string name="activity_name">DroidPHP</string>
+    <string name="server_handler">Server Management</string>
+    <string name="server_online">Start Server</string>
+    <string name="server_kill">Kill Server</string>
+    <string name="install_bin">Installing binaries ..</string>
+    <string name="bin_installed">Binaries successfully Installed</string>
+    <string name="bin_hint">Binaries not found Please click on More >> Install Binaries to Install Lighttpd, PHP, mySQL</string>
+    <string name="bin_error">Unable to install binaries</string>
+    <!-- Action bar menus -->
+    <string name="abs_help">Menu</string>
+    <string name="abs_project">Fork On GitHub</string>
+    <string name="abs_dev">Developers</string>
+    <string name="abs_about">About</string>
+    <string name="abs_settings">Settings</string>
+    <!-- Server Service -->
+    <string name="sevc_service">DroidPHP Services</string>
+    <string name="sevc_server_started">DroidPHP is successfully running</string>
+    <!--  -->
+    <string name="ent_shell_cmd">Enter MYSQL Shell CMD</string>
+    <string name="hint_shell_cmd">Example help;</string>
+    <string name="shel_run">Run</string>
+    <string name="shell_help"><strong>Welcome to the MySQL monitor!</strong>\n\nCommands end with ; or \\g.\nType \'help;\' or \'\\h\' for help.\n</string>
+
+</resources>

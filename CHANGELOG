@@ -1,0 +1,15 @@
+
+* 1.0.2 (2013-6-26)
+  * stable version
+  * renamed from AMPDroid to DroidPHP
+  * several bug fixed
+  * added killall to kill process by name
+  * added Settings to change default server conf
+  * added on application mysql shell
+  * package rename from com.github.punkboy.ampdroid to com.github.DroidPHP
+  * made small speed optimizations
+  * made minor tweaks to allow better extensibility and flexibility
+  
+* 1.0.0 (2013-5-11)
+
+ * Initial release
