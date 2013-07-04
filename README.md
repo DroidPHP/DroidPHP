@@ -9,6 +9,8 @@ You can easily checkout latest version:
 
 > $ git clone git://github.com/DroidPHP/DroidPHP
 
+and compiled VErsion (APK)
+*[Download it from BOX](https://www.box.com/s/wt80026oy26k1xf4y5xv)
 <br />
 
 
