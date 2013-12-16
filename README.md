@@ -1,4 +1,4 @@
-## DroidPHP [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=Shushant&url=https://github.com/droidphp/droidphp&title=DroidPHP&language=&tags=github&category=software)
+## DroidPHP [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=Shushant786&url=https://github.com/droidphp/droidphp&title=DroidPHP&language=&tags=github&category=software)
 
 DroidPHP is a small, fast and lightweight open source Web Server for Android.
 DroidPHP is properly supported on Android 2.3.3 or Higher 
