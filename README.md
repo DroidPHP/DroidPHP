@@ -36,3 +36,7 @@ Please fork this repository and contribute back using
 Any contributions, large or small, major features, bug fixes, additional
 language translations, unit/integration tests are welcomed and appreciated
 but will be thoroughly reviewed and discussed.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/DroidPHP/droidphp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
