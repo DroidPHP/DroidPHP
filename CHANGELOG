@@ -1,3 +1,6 @@
+* 1.0.3 (2014-3-14)
+  * Refactored classnames
+  * Migrated project to Gradle
 
 * 1.0.2 (2013-6-26)
   * stable version

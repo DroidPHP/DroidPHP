@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="commons-lite-1.14">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Application/libs/commons-lite-1.14.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
