@@ -1,0 +1,56 @@
+* 1.1.0 (2014-3-29)
+  * fixed several bug
+  * added several mods to server (the whole list of server mods is here):
+     * mod_rewrite
+     * mod_redirect
+     * mod_alias
+     * mod_extforward
+     * mod_access
+     * mod_setenv
+     * mod_flv_streaming
+     * mod_indexfile
+     * mod_userdir
+     * mod_dirlisting
+     * mod_status
+     * mod_simple_vhost
+     * mod_evhost
+     * mod_secdownload
+     * mod_cgi
+     * mod_fastcgi
+     * mod_scgi
+     * mod_proxy
+     * mod_staticfile
+     * mod_evasive
+     * mod_compress
+     * mod_compress
+     * mod_usertrack
+     * mod_expire
+     * mod_accesslog
+
+  * improved stability of the server
+  * UI interface changed
+  * fixed DNS problems. All functions related with gethostbyname(), getaddrinfo() and etc. are working correct now
+  * new version of lighttpd server (1.4.34)
+  * new version of php (5.5.9)
+  * added sendmail support based on msmtp
+  * new code base
+  * package rename to `org.opendroidphp.app`
+
+* 1.0.3 (2014-3-14)
+  * Refactored classnames
+  * Migrated project to Gradle
+
+* 1.0.2 (2013-6-26)
+  * stable version
+  * renamed from AMPDroid to DroidPHP
+  * several bug fixed
+  * added killall to kill process by name
+  * added Settings to change default server conf
+  * added on application mysql shell
+  * package rename from com.github.punkboy.ampdroid to com.github.DroidPHP
+  * made small speed optimizations
+  * made minor tweaks to allow better extensibility and flexibility
+  
+* 1.0.0 (2013-5-11)
+
+ * Initial release

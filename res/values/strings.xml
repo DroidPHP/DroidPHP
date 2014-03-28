@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * This file is part of DroidPHP
+  ~  *
+  ~  * (c) 2014 Shushant Kumar
+  ~  *
+  ~  * For the full copyright and license information, please view the LICENSE
+  ~  * file that was distributed with this source code.
+  ~  */
+  -->
+
+<resources>
+    <string name="textOn">ON</string>
+    <string name="textOff">OFF</string>
+
+    <string name="app_name">DroidPHP</string>
+    <string name="web_admin">Web Admin</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="close">Close</string>
+    <string name="message">Message</string>
+    <string name="please_read_me">"<a href="http://github.com/droidphp">DroidPHP</a> is an free and opensource project developed for running PHP and mySQL based Application on your android device"</string>
+    <string name="more_info">More Info</string>
+    <string name="web_server">Web Server</string>
+    <string name="running">RUNNING</string>
+    <string name="stopped">STOPPED</string>
+    <string name="lighttpd_php">Lighttpd 1.4.34 - PHP 5.9.9</string>
+    <string name="lighttpd_php_desc">Turn your Android phone or tablet into a web and database server! Powered by Lighttpd, PHP and MYSQL.
+    </string>
+    <string name="db_server">Database Server</string>
+    <string name="mysql">MySQL 5.1.62</string>
+    <string name="mysql_desc">Turn your Android phone or tablet into a database server! Powered by
+        MySQL.
+    </string>
+    <string name="device_status">Device Status</string>
+    <string name="none">---</string>
+    <string name="server_status">Server Status</string>
+    <string name="web_server_not_running">Web server not running!</string>
+    <string name="php_thread">PHP PROCS</string>
+    <string name="uptime">UPTIME</string>
+    <string name="port">PORT</string>
+    <string name="curr_conn">CURR CONS</string>
+    <string name="total_conn">TOTAL CONS</string>
+    <string name="traffic">TRAFFIC</string>
+    <string name="db_server_not_running">Database server not running!</string>
+    <string name="core_apps">Core Applications</string>
+    <string name="installed">INSTALLED</string>
+    <string name="not_installed">NOT INSTALLED</string>
+    <string name="core_apps_title">Lighttpd - PHP - MySQL - Msmtp</string>
+    <string name="core_apps_not_installed">"Core apps not installed or it may not have installed correctly! Please intall first! Notice: It's requires 50MB of free space on your internal memory!"
+    </string>
+    <string name="turning_on_server">Turning ON Server…</string>
+    <string name="turning_on_server_failed">Something went wrong, please try again later!</string>
+    <string name="turning_off_server">Turning OFF Server…</string>
+    <string name="turning_off_server_failed">Something went wrong, please try again later!</string>
+    <string name="installing_core_apps">Installing Core Applications…</string>
+    <string name="install_failed">Something went wrong, please reinstall DroidPHP!</string>
+    <string name="updating_core_apps">Updating Core Applications…</string>
+    <string name="update_failed">Something went wrong, please reinstall DroidPHP!</string>
+    <string name="uninstalling_core_apps">Uninstalling Core Applications…</string>
+    <string name="uninstall_failed">Something went wrong, please reinstall DroidPHP!
+    </string>
+    <string name="please_wait">Please Wait</string>
+    <string name="lighttpd_config">Lighttpd Config</string>
+    <string name="php_config">PHP Config</string>
+    <string name="mysql_config">MySQL Config</string>
+    <string name="msmtp_config">Msmtp Config</string>
+    <string name="exception_msg">Something went wrong, please reinstall DroidPHP!</string>
+    <string name="save">Save</string>
+    <string name="saved_successfully">Your configuration has been successfully saved!</string>
+    <string name="cancel">Cancel</string>
+    <string name="password_changed">Password Changed</string>
+    <string name="core_install">"Are you sure you want to install the core applications? It's
+        requires 50MB of free space on your internal memory!"
+    </string>
+    <string name="core_uninstall">Are you sure you want to remove the core apps from the system?
+    </string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="web_db_server_is_running">Web and database server service is running!</string>
+    <string name="web_server_is_running">Web server service is running!</string>
+    <string name="db_server_is_running">Database server service is running!</string>
+    <string name="core_apps_installed">Core applications installed correctly!</string>
+    <string name="install">Install</string>
+    <string name="dont_install">"Don't Install"</string>
+    <string name="about_app">"Turn your Android devices into a web and database server with DroidPHP, a suite of web developer. This application has been designed for low memory consumption and CPU usage, specially used for smartphone and tablet. Hey, it's free and you don't need a root access to run DroidPHP.
+    Credits:
+        "<a href="http://actionbarsherlock.com">ActionBarSherlock</a>,<a href="http://ankri.de"> SwitchCompatLibrary</a>,
+        <a href="http://developer.android.com/design/downloads/index.html">Action Bar Icon Pack</a>,
+        <a href="http://lighttpd.net">Lighttpd</a>,<a href="http://php.net">PHP</a>,
+        <a href="http://mysql.com">MySQL</a>, <a href="http://msmtp.sourceforge.net">MSMTP</a>, <a href="http://busybox.net">BUSYBOX</a> etc
+    </string>
+    <string name="non_rooted_device">Your device no rooted to run port under 1024!</string>
+    <string name="detected_link2sd">Detected Link2SD</string>
+    <string name="detected_link2sd_text">Sorry your device is already installed Link2SD application,
+        you must first uninstall Link2SD for the first time!
+    </string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_section1">Add Command</string>
+    <string name="title_section2">Boot Commands</string>
+    <string name="title_section3">Favourite Commands</string>
+    <string name="boot_but_text">Add to Boot Commands</string>
+    <string name="fav_but_text">Add to Favourite Commands</string>
+    <string name="refresh">Refresh Command List</string>
+    <string name="exec_prog">Executing , please wait</string>
+    <string name="quick_menu">Quick Menu</string>
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * This file is part of DroidPHP
+  ~  *
+  ~  * (c) 2014 Shushant Kumar
+  ~  *
+  ~  * For the full copyright and license information, please view the LICENSE
+  ~  * file that was distributed with this source code.
+  ~  */
+  -->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/spinner_inner"/>
+    <item>
+        <rotate
+                android:fromDegrees="0"
+                android:interpolator="@android:anim/linear_interpolator"
+                android:pivotX="50%"
+                android:pivotY="50%"
+                android:toDegrees="360">
+            <bitmap
+                    android:antialias="true"
+                    android:filter="true"
+                    android:src="@drawable/spinner_outer"/>
+        </rotate>
+    </item>
+
+</layer-list>

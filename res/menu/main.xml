@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * This file is part of DroidPHP
+  ~  *
+  ~  * (c) 2014 Shushant Kumar
+  ~  *
+  ~  * For the full copyright and license information, please view the LICENSE
+  ~  * file that was distributed with this source code.
+  ~  */
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:icon="@drawable/web_site"
+            android:id="@+id/web_admin"
+            android:title="@string/web_admin"
+            android:titleCondensed="@string/web_admin"
+            android:showAsAction="ifRoom|withText"/>
+    <item
+            android:icon="@drawable/settings"
+            android:id="@+id/settings"
+            android:title="@string/settings"
+            android:titleCondensed="@string/settings"
+            android:showAsAction="ifRoom|withText"/>
+    <item
+            android:icon="@drawable/about"
+            android:id="@+id/about"
+            android:title="@string/about"
+            android:titleCondensed="@string/about"
+            android:showAsAction="ifRoom|withText"/>
+</menu>

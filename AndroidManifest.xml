@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * This file is part of DroidPHP
+  ~  *
+  ~  * (c) 2014 Shushant Kumar
+  ~  *
+  ~  * For the full copyright and license information, please view the LICENSE
+  ~  * file that was distributed with this source code.
+  ~  */
+  -->
+
+<manifest
+        android:versionCode="110"
+        android:versionName="1.1.0"
+        package="org.opendroidphp.app"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-sdk
+            android:minSdkVersion="7"
+            android:maxSdkVersion="19"
+            android:targetSdkVersion="17"></uses-sdk>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+    <application
+            android:theme="@style/Theme.DroidPHP"
+            android:label="@string/app_name"
+            android:icon="@drawable/ic_launcher"
+            android:allowBackup="true">
+
+        <activity
+                android:label="@string/app_name"
+                android:name=".HomeActivity"
+                android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+
+            <receiver android:name="org.opendroidphp.app.services.OnStartupReceiver">
+                <intent-filter>
+                    <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                    <category android:name="android.intent.category.HOME"/>
+                </intent-filter>
+            </receiver>
+
+        </activity>
+
+        <activity
+                android:label="@string/settings"
+                android:name=".Preferences"
+                android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+    </application>
+</manifest>

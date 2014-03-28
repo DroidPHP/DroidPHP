@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * This file is part of DroidPHP
+  ~  *
+  ~  * (c) 2014 Shushant Kumar
+  ~  *
+  ~  * For the full copyright and license information, please view the LICENSE
+  ~  * file that was distributed with this source code.
+  ~  */
+  -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_window_focused="false" android:drawable="@android:color/transparent"/>
+
+    <!-- Even though these two point toast_view the same resource, have two states so the drawable will invalidate itself when coming out of pressed state. -->
+    <item android:state_focused="true" android:state_enabled="false" android:state_pressed="true" android:drawable="@drawable/droidphp_list_selector_disabled_holo_light"/>
+    <item android:state_focused="true" android:state_enabled="false" android:drawable="@drawable/droidphp_list_selector_disabled_holo_light"/>
+    <item android:state_focused="true" android:state_pressed="true" android:drawable="@drawable/droidphp_list_selector_background_transition_holo_light"/>
+    <item android:state_focused="false" android:state_pressed="true" android:drawable="@drawable/droidphp_list_selector_background_transition_holo_light"/>
+    <item android:state_focused="true" android:drawable="@drawable/droidphp_list_focused_holo"/>
+
+</selector>

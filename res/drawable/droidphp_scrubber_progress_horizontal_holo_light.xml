@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * This file is part of DroidPHP
+  ~  *
+  ~  * (c) 2014 Shushant Kumar
+  ~  *
+  ~  * For the full copyright and license information, please view the LICENSE
+  ~  * file that was distributed with this source code.
+  ~  */
+  -->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@android:id/background"
+            android:drawable="@drawable/droidphp_scrubber_track_holo_light"/>
+    <item android:id="@android:id/secondaryProgress">
+        <scale
+                android:scaleWidth="100%"
+                android:drawable="@drawable/droidphp_scrubber_secondary_holo"/>
+    </item>
+    <item android:id="@android:id/progress">
+        <scale
+                android:scaleWidth="100%"
+                android:drawable="@drawable/droidphp_scrubber_primary_holo"/>
+    </item>
+</layer-list>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * This file is part of DroidPHP
+  ~  *
+  ~  * (c) 2014 Shushant Kumar
+  ~  *
+  ~  * For the full copyright and license information, please view the LICENSE
+  ~  * file that was distributed with this source code.
+  ~  */
+  -->
+
+<resources>
+    <string-array name="mysql_engine">
+        <item>MyISAM</item>
+        <item>MRG_MYISAM</item>
+        <item>MEMORY</item>
+        <item>CSV</item>
+    </string-array>
+    <string-array name="refresh_interval">
+        <item>6 Seconds</item>
+        <item>15 Seconds</item>
+        <item>30 Seconds</item>
+        <item>1 Minute</item>
+        <item>2 Minutes</item>
+    </string-array>
+    <string-array name="refresh_interval_value">
+        <item>6000</item>
+        <item>15000</item>
+        <item>30000</item>
+        <item>60000</item>
+        <item>120000</item>
+    </string-array>
+</resources>

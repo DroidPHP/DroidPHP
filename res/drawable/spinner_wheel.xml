@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * This file is part of DroidPHP
+  ~  *
+  ~  * (c) 2014 Shushant Kumar
+  ~  *
+  ~  * For the full copyright and license information, please view the LICENSE
+  ~  * file that was distributed with this source code.
+  ~  */
+  -->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <rotate
+                android:drawable="@drawable/spinner_outer"
+                android:fromDegrees="0.0"
+                android:toDegrees="1080.0"
+                android:pivotX="50.0%"
+                android:pivotY="50.0%"/>
+    </item>
+</layer-list>

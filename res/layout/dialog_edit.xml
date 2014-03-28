@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * This file is part of DroidPHP
+  ~  *
+  ~  * (c) 2014 Shushant Kumar
+  ~  *
+  ~  * For the full copyright and license information, please view the LICENSE
+  ~  * file that was distributed with this source code.
+  ~  */
+  -->
+
+<LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:id="@+id/ed_root"
+        android:padding="7.0dip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditText
+            android:id="@+id/field"
+            style="@style/EditTextDroidphp"
+            android:layout_width="210.0dip"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+</LinearLayout>

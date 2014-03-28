@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * This file is part of DroidPHP
+  ~  *
+  ~  * (c) 2014 Shushant Kumar
+  ~  *
+  ~  * For the full copyright and license information, please view the LICENSE
+  ~  * file that was distributed with this source code.
+  ~  */
+  -->
+
+<LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/progress_layout_root"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+            android:textSize="24.0sp"
+            android:textColor="#ff6b9a3e"
+            android:id="@+id/title"
+            android:padding="10.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+
+    <View
+            android:background="#ff6b9a3e"
+            android:layout_width="fill_parent"
+            android:layout_height="2.0dip"/>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+        <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10.0dip"
+                android:max="10000"
+                android:indeterminate="true"
+                android:indeterminateDrawable="@drawable/spinner"/>
+
+        <TextView
+                android:textSize="14.0sp"
+                android:textColor="#ff000000"
+                android:ellipsize="end"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/message"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * This file is part of DroidPHP
+  ~  *
+  ~  * (c) 2014 Shushant Kumar
+  ~  *
+  ~  * For the full copyright and license information, please view the LICENSE
+  ~  * file that was distributed with this source code.
+  ~  */
+  -->
+
+<resources>
+    <color name="normal">#ffffffff</color>
+    <color name="pressed">#ff81cfeb</color>
+    <color name="focused">#ff81cfeb</color>
+
+    <color name="background_dark">#ff000000</color>
+    <color name="background_light">#ffffffff</color>
+    <color name="bright_foreground_dark">@color/background_light</color>
+    <color name="bright_foreground_light">@color/background_dark</color>
+    <color name="bright_foreground_dark_disabled">#80ffffff</color>
+
+    <color name="tab_host">#4183C4</color>
+    <color name="red">#900</color>
+    <color name="green">#090</color>
+    <color name="blue">#009</color>
+    <color name="white">#FFF</color>
+    <color name="black">#000</color>
+</resources>

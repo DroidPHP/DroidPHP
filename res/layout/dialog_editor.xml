@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * This file is part of DroidPHP
+  ~  *
+  ~  * (c) 2014 Shushant Kumar
+  ~  *
+  ~  * For the full copyright and license information, please view the LICENSE
+  ~  * file that was distributed with this source code.
+  ~  */
+  -->
+
+<LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ScrollView
+            android:orientation="vertical"
+            android:background="#ffffffff"
+            android:fadingEdge="none"
+            android:clipToPadding="false"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0">
+
+        <EditText
+                android:textSize="13.0sp"
+                android:gravity="top"
+                android:id="@+id/config"
+                android:background="#ffffffff"
+                android:padding="5.0dip"
+                android:scrollbars="horizontal|vertical"
+                android:fadingEdge="none"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:fontFamily="Courier"/>
+    </ScrollView>
+
+    <View
+            android:background="#ffdddddd"
+            android:layout_width="fill_parent"
+            android:layout_height="1.0dip"/>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+        <Button
+                android:textSize="14.0sp"
+                android:textColor="#ff000000"
+                android:id="@+id/positive"
+                android:background="@drawable/btn_dialog"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:minHeight="48.0dip"
+                android:layout_weight="1.0"/>
+
+        <View
+                android:background="#ffdddddd"
+                android:layout_width="1.0dip"
+                android:layout_height="fill_parent"/>
+
+        <Button
+                android:textSize="14.0sp"
+                android:textColor="#ff000000"
+                android:id="@+id/negative"
+                android:background="@drawable/btn_dialog"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:minHeight="48.0dip"
+                android:layout_weight="1.0"/>
+    </LinearLayout>
+</LinearLayout>

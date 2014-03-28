@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ /**
+  ~  * This file is part of DroidPHP
+  ~  *
+  ~  * (c) 2014 Shushant Kumar
+  ~  *
+  ~  * For the full copyright and license information, please view the LICENSE
+  ~  * file that was distributed with this source code.
+  ~  */
+  -->
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AutoCompleteTextViewDroidphp" parent="android:Widget.Holo.Light.AutoCompleteTextView">
+        <item name="android:dropDownSelector">@drawable/droidphp_list_selector_holo_light</item>
+        <item name="android:background">@drawable/droidphp_edit_text_holo_light</item>
+    </style>
+
+    <style name="ButtonDroidphp" parent="android:Widget.Holo.Light.Button">
+        <item name="android:background">@drawable/droidphp_btn_default_holo_light</item>
+    </style>
+
+    <style name="ImageButtonDroidphp" parent="android:Widget.Holo.Light.ImageButton">
+        <item name="android:background">@drawable/droidphp_btn_default_holo_light</item>
+    </style>
+
+    <style name="SpinnerDroidphp" parent="android:Widget.Holo.Light.Spinner">
+        <item name="android:background">@drawable/droidphp_spinner_background_holo_light</item>
+        <item name="android:dropDownSelector">@drawable/droidphp_list_selector_holo_light</item>
+    </style>
+
+    <style name="ProgressBarDroidphp" parent="android:Widget.Holo.Light.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/droidphp_progress_horizontal_holo_light
+        </item>
+        <item name="android:indeterminateDrawable">
+            @drawable/droidphp_progress_indeterminate_horizontal_holo_light
+        </item>
+    </style>
+
+    <style name="SeekBarDroidphp" parent="android:Widget.Holo.Light.SeekBar">
+        <item name="android:progressDrawable">
+            @drawable/droidphp_scrubber_progress_horizontal_holo_light
+        </item>
+        <item name="android:indeterminateDrawable">
+            @drawable/droidphp_scrubber_progress_horizontal_holo_light
+        </item>
+        <item name="android:thumb">@drawable/droidphp_scrubber_control_selector_holo_light</item>
+    </style>
+
+    <style name="RatingBarDroidphp" parent="android:Widget.Holo.Light.RatingBar">
+        <item name="android:progressDrawable">@drawable/droidphp_ratingbar_full_holo_light</item>
+        <item name="android:indeterminateDrawable">@drawable/droidphp_ratingbar_full_holo_light
+        </item>
+    </style>
+
+    <style name="RatingBarBigDroidphp" parent="android:Widget.Holo.Light.RatingBar.Indicator">
+        <item name="android:progressDrawable">@drawable/droidphp_ratingbar_holo_light</item>
+        <item name="android:indeterminateDrawable">@drawable/droidphp_ratingbar_holo_light</item>
+    </style>
+
+    <style name="RatingBarSmallDroidphp" parent="android:Widget.Holo.Light.RatingBar.Small">
+        <item name="android:progressDrawable">@drawable/droidphp_ratingbar_small_holo_light</item>
+        <item name="android:indeterminateDrawable">@drawable/droidphp_ratingbar_small_holo_light
+        </item>
+    </style>
+
+    <style name="ToggleDroidphp" parent="android:Widget.Holo.Light.Button.Toggle">
+        <item name="android:background">@drawable/droidphp_btn_toggle_holo_light</item>
+    </style>
+
+</resources>

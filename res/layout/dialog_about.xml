@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * This file is part of DroidPHP
+  ~  *
+  ~  * (c) 2014 Shushant Kumar
+  ~  *
+  ~  * For the full copyright and license information, please view the LICENSE
+  ~  * file that was distributed with this source code.
+  ~  */
+  -->
+
+<LinearLayout
+        style="@style/Theme.DroidPHP.Dialog"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+            android:textSize="24.0sp"
+            android:textColor="#ff6b9a3e"
+            android:gravity="center_vertical"
+            android:id="@+id/title"
+            android:padding="10.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_launcher"/>
+
+    <View
+            android:background="#ff6b9a3e"
+            android:layout_width="fill_parent"
+            android:layout_height="2.0dip"/>
+
+    <ScrollView
+            android:clipToPadding="false"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0">
+
+        <TextView
+                android:textColor="#ff000000"
+                android:gravity="center_horizontal"
+                android:id="@+id/message"
+                android:padding="10.0dip"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"/>
+    </ScrollView>
+
+    <View
+            android:background="#ffdddddd"
+            android:layout_width="fill_parent"
+            android:layout_height="1.0dip"/>
+
+    <Button
+            android:textSize="14.0sp"
+            android:textColor="#ff000000"
+            android:id="@+id/close"
+            android:background="@drawable/btn_dialog"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48.0dip"
+            android:text="@string/close"/>
+</LinearLayout>

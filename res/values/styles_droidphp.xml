@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ /**
+  ~  * This file is part of DroidPHP
+  ~  *
+  ~  * (c) 2014 Shushant Kumar
+  ~  *
+  ~  * For the full copyright and license information, please view the LICENSE
+  ~  * file that was distributed with this source code.
+  ~  */
+  -->
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="EditTextDroidphp" parent="android:Widget.EditText">
+        <item name="android:background">@drawable/droidphp_edit_text_holo_light</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="AutoCompleteTextViewDroidphp" parent="android:Widget.AutoCompleteTextView">
+        <item name="android:dropDownSelector">@drawable/droidphp_list_selector_holo_light</item>
+        <item name="android:background">@drawable/droidphp_edit_text_holo_light</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="CheckBoxDroidphp" parent="android:Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/droidphp_btn_check_holo_light</item>
+    </style>
+
+    <style name="RadioButtonDroidphp" parent="android:Widget.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/droidphp_btn_radio_holo_light</item>
+    </style>
+
+    <style name="ButtonDroidphp" parent="android:Widget.Button">
+        <item name="android:background">@drawable/droidphp_btn_default_holo_light</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:minWidth">64dip</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="ImageButtonDroidphp" parent="android:Widget.ImageButton">
+        <item name="android:background">@drawable/droidphp_btn_default_holo_light</item>
+    </style>
+
+    <style name="SpinnerDroidphp" parent="android:Widget.Spinner">
+        <item name="android:background">@drawable/droidphp_spinner_background_holo_light</item>
+        <item name="android:dropDownSelector">@drawable/droidphp_list_selector_holo_light</item>
+    </style>
+
+    <style name="SpinnerDropDownItemDroidphp" parent="android:Widget.DropDownItem.Spinner">
+        <item name="android:checkMark">@drawable/droidphp_btn_radio_holo_light</item>
+    </style>
+
+    <style name="TabDroidphp">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingLeft">16dip</item>
+        <item name="android:paddingRight">16dip</item>
+        <item name="android:background">@drawable/droidphp_tab_indicator_holo</item>
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:minWidth">80dip</item>
+    </style>
+
+    <style name="TabTextDroidphp">
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <!-- v14 <item name="android:textAllCaps">true</item> -->
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:maxWidth">180dip</item>
+    </style>
+
+    <style name="ProgressBarDroidphp" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/droidphp_progress_horizontal_holo_light
+        </item>
+        <item name="android:indeterminateDrawable">
+            @drawable/droidphp_progress_indeterminate_horizontal_holo_light
+        </item>
+        <item name="android:minHeight">16dip</item>
+        <item name="android:maxHeight">16dip</item>
+    </style>
+
+    <style name="SeekBarDroidphp" parent="android:Widget.SeekBar">
+        <item name="android:progressDrawable">
+            @drawable/droidphp_scrubber_progress_horizontal_holo_light
+        </item>
+        <item name="android:indeterminateDrawable">
+            @drawable/droidphp_scrubber_progress_horizontal_holo_light
+        </item>
+        <item name="android:minHeight">13dip</item>
+        <item name="android:maxHeight">13dip</item>
+        <item name="android:thumb">@drawable/droidphp_scrubber_control_selector_holo_light</item>
+        <item name="android:thumbOffset">16dip</item>
+        <item name="android:paddingLeft">16dip</item>
+        <item name="android:paddingRight">16dip</item>
+    </style>
+
+    <style name="RatingBarDroidphp" parent="android:Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/droidphp_ratingbar_full_holo_light</item>
+        <item name="android:indeterminateDrawable">@drawable/droidphp_ratingbar_full_holo_light
+        </item>
+    </style>
+
+    <style name="RatingBarBigDroidphp">
+        <item name="android:progressDrawable">@drawable/droidphp_ratingbar_holo_light</item>
+        <item name="android:indeterminateDrawable">@drawable/droidphp_ratingbar_holo_light</item>
+        <item name="android:minHeight">35dip</item>
+        <item name="android:maxHeight">35dip</item>
+    </style>
+
+    <style name="RatingBarSmallDroidphp">
+        <item name="android:progressDrawable">@drawable/droidphp_ratingbar_small_holo_light</item>
+        <item name="android:indeterminateDrawable">@drawable/droidphp_ratingbar_small_holo_light
+        </item>
+        <item name="android:minHeight">16dip</item>
+        <item name="android:maxHeight">16dip</item>
+    </style>
+
+    <style name="ToggleDroidphp" parent="android:Widget.Button.Toggle">
+        <item name="android:background">@drawable/droidphp_btn_toggle_holo_light</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="ListViewDroidphp" parent="android:Widget.ListView">
+        <item name="android:listSelector">@drawable/droidphp_list_selector_holo_light</item>
+    </style>
+
+    <style name="ListViewDroidphp.White" parent="android:Widget.ListView.White">
+        <item name="android:listSelector">@drawable/droidphp_list_selector_holo_light</item>
+    </style>
+
+    <style name="SpinnerItemDroidphp" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+        <item name="android:textColor">#000000</item>
+    </style>
+
+</resources>

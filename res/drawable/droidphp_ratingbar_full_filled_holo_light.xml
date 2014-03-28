@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * This file is part of DroidPHP
+  ~  *
+  ~  * (c) 2014 Shushant Kumar
+  ~  *
+  ~  * For the full copyright and license information, please view the LICENSE
+  ~  * file that was distributed with this source code.
+  ~  */
+  -->
+
+<!-- This is the rating bar drawable that is used toast_view a show a filled star. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true" android:state_window_focused="true" android:drawable="@drawable/droidphp_btn_rating_star_on_pressed_holo_light"/>
+
+    <item android:state_focused="true" android:state_window_focused="true" android:drawable="@drawable/droidphp_btn_rating_star_on_focused_holo_light"/>
+
+    <item android:state_selected="true" android:state_window_focused="true" android:drawable="@drawable/droidphp_btn_rating_star_on_focused_holo_light"/>
+
+    <item android:drawable="@drawable/droidphp_btn_rating_star_on_normal_holo_light"/>
+
+</selector>
