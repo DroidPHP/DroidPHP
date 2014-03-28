@@ -10,7 +10,6 @@ You can easily checkout latest version:
 > $ git clone git://github.com/droidphp/droidphp
 
 * [Download old version](https://www.box.com/s/wt80026oy26k1xf4y5xv)
-* [Download v1.1.0](https://drive.google.com/file/d/0B1YIxncPig-AN21rMEZLaDJLbVU/edit?usp=sharing)
 <br />
 
 ## Why no Gradle Support
