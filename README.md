@@ -9,7 +9,7 @@ You can easily checkout latest version:
 
 > $ git clone git://github.com/droidphp/droidphp
 
-* [Download old version](https://www.box.com/s/wt80026oy26k1xf4y5xv)
+* [Download from Play Store](https://play.google.com/store/apps/details?id=org.opendroidphp.app)
 <br />
 
 ## Why no Gradle Support
