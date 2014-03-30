@@ -10,8 +10,8 @@
   -->
 
 <manifest
-        android:versionCode="110"
-        android:versionName="1.1.0"
+        android:versionCode="111"
+        android:versionName="1.1.1"
         package="org.opendroidphp.app"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
