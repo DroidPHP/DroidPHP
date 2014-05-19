@@ -31,9 +31,7 @@ public class InstallProgressDialogFragment extends SherlockDialogFragment {
 
         @Override
         protected Void doInBackground(Void... params) {
-            String FILE_INSTALL = "";
             Boolean isInstalled = true;
-            FileInputStream is = null;
 
             ZipInputStream zipInputStream = null;
             createDirectory("");
@@ -48,7 +46,6 @@ public class InstallProgressDialogFragment extends SherlockDialogFragment {
                     );
 
                 } else {
-
                     //use internal repository
                     zipInputStream = new ZipInputStream(
                             getSherlockActivity().getAssets().open("data.zip")
@@ -74,15 +71,12 @@ public class InstallProgressDialogFragment extends SherlockDialogFragment {
                         fout = new FileOutputStream(
                                 NATIVE_DIRECTORY + zipEntry.getName()
                         );
-
-
                         publishProgress(zipEntry.getName());
 
                         byte[] buffer = new byte[4096 * 10];
                         int length = 0;
 
                         while ((length = zipInputStream.read(buffer)) != -1) {
-
                             fout.write(buffer, 0, length);
                         }
 
@@ -94,12 +88,10 @@ public class InstallProgressDialogFragment extends SherlockDialogFragment {
                 }
                 zipInputStream.close();
             } catch (Exception e) {
-
                 isInstalled = false;
 
-                //return null;
-
             }
+
             if (isInstalled) {
                 publishProgress("DONE");
             } else {
@@ -174,7 +166,11 @@ public class InstallProgressDialogFragment extends SherlockDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        NATIVE_DIRECTORY = getSherlockActivity().getApplicationInfo().dataDir + "/";
+        try {
+            NATIVE_DIRECTORY = getSherlockActivity().getApplicationInfo().dataDir + "/";
+        } catch (NullPointerException e) {
+
+        }
 
         EXTERNAL_REPOSITORY = Environment.
                 getExternalStorageDirectory().getPath() + "/" + Constants.UPDATE_FROM_EXTERNAL_REPOSITORY;
