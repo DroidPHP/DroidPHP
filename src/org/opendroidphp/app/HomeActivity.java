@@ -12,10 +12,12 @@ package org.opendroidphp.app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,15 +29,13 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
-import org.opendroidphp.app.common.components.BaseExecutor;
-import org.opendroidphp.app.common.components.LighttpdExecutor;
-import org.opendroidphp.app.common.components.MySqlExecutor;
-import org.opendroidphp.app.common.components.PHPExecutor;
 import org.opendroidphp.app.common.inject.InjectView;
 import org.opendroidphp.app.common.inject.Injector;
+import org.opendroidphp.app.common.tasks.DestroyServer;
 import org.opendroidphp.app.common.utils.FileUtils;
 import org.opendroidphp.app.fragments.dialogs.AboutDialogFragment;
 import org.opendroidphp.app.fragments.dialogs.NotifyInstalltionDialogFragment;
+import org.opendroidphp.app.services.ServerService;
 
 import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -49,29 +49,11 @@ import de.ankri.views.Switch;
 @android.annotation.TargetApi(Build.VERSION_CODES.GINGERBREAD)
 public class HomeActivity extends SherlockFragmentActivity {
 
-
-    static {
-        //BaseExecutor should be registered before other
-        ComponentExecutorPool.registerExecutor(BaseExecutor.class);
-
-        ComponentExecutorPool.registerExecutor(LighttpdExecutor.class);
-        ComponentExecutorPool.registerExecutor(PHPExecutor.class);
-        ComponentExecutorPool.registerExecutor(MySqlExecutor.class);
-
-    }
-
-    private final Activity context = this;
-
-    @InjectView(R.id.update_msg)
-    private TextView mUpdateMessage;
-
     @InjectView(R.id.switch_lighttpd_php)
     private Switch manageServer;
 
-//    @InjectView(R.id.message_container)
-//    private LinearLayout messageLayout;
-
     private AtomicBoolean isInstalled = new AtomicBoolean(false);
+    private SharedPreferences preferences;
 
 
     /**
@@ -81,75 +63,37 @@ public class HomeActivity extends SherlockFragmentActivity {
 
         @Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean isEnable) {
-            Runnable runnable = null;
+
 
             if (isEnable) {
 
-                //server enabled
-                runnable = new Runnable() {
+                new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        if (!FileUtils.checkIfExecutableExists()) {
 
-                        try {
-
-                            if (!FileUtils.checkIfExecutableExists()) {
-
-                                boolean exitInfiniteLoop = false;
-                                SherlockDialogFragment dialogFragment = new NotifyInstalltionDialogFragment();
-                                dialogFragment.show(getSupportFragmentManager(), "install");
-                                SystemClock.sleep(150);
-
-                                //i love infinity :D
-                                // dirty hack to avoid calling ComponentExecutorPool before dialog is dismissed
-                                do {
-
-                                    if (!dialogFragment.getDialog().isShowing()) {
-
-                                        exitInfiniteLoop = true;
-                                        Log.d("DIALOG", "Exit from dialog");
-                                    }
-
-
-                                } while (!exitInfiniteLoop);
-                            }
-
+                            boolean exitInfiniteLoop = false;
+                            SherlockDialogFragment dialogFragment = new NotifyInstalltionDialogFragment();
+                            dialogFragment.show(getSupportFragmentManager(), "install");
                             SystemClock.sleep(150);
 
-                            //FIXME: this is not executed after installer is closed
-                            if (FileUtils.checkIfExecutableExists()) {
-                                //let me guss installation is completed lets execute the all registered executors
+                            //i love infinity :D
+                            // dirty hack to avoid calling ComponentExecutorPool before dialog is dismissed
+                            do {
+                                if (!dialogFragment.getDialog().isShowing()) {
+                                    exitInfiniteLoop = true;
+                                    Log.d("DIALOG", "Exit from dialog");
+                                }
 
-                                ComponentExecutorPool.connectAll();
-                            }
-
-
-                        } catch (Exception e) {
-
+                            } while (!exitInfiniteLoop);
                         }
-
                     }
-                };
+                }).start();
 
+                startService(new Intent(HomeActivity.this, ServerService.class));
             } else {
-
-                //server disable
-                runnable = new Runnable() {
-
-                    @Override
-                    public void run() {
-
-                        try {
-
-                            ComponentExecutorPool.destroyAll();
-                        } catch (Exception e) {
-
-                        }
-                    }
-                };
+                new Thread(new DestroyServer()).start();
             }
-
-            new Thread(runnable).start();
-
         }
     };
 
@@ -160,6 +104,9 @@ public class HomeActivity extends SherlockFragmentActivity {
         setContentView(R.layout.activity_main);
         Injector.get(this).inject();
         manageServer.setEnabled(true);
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         checkIfCoreInstalled();
 
         manageServer.setOnCheckedChangeListener(manageServerEventListener);
@@ -181,30 +128,28 @@ public class HomeActivity extends SherlockFragmentActivity {
     protected void onStart() {
         super.onStart();
 
+        if (preferences.getBoolean("enable_server_on_app_startup", false)) {
+            startService(new Intent(this, ServerService.class));
+        }
         //check server status by looking lighttpd.pid file
+
 
         new Thread(new Runnable() {
 
             @Override
             public void run() {
+                boolean pidExist = false;
 
                 if ((new File(Constants.INTERNAL_LOCATION + "/tmp/lighttpd.pid").exists())) {
-                    manageServer.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            manageServer.setChecked(true);
-                        }
-                    });
-
-
-                } else {
-                    manageServer.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            manageServer.setChecked(false);
-                        }
-                    });
+                    pidExist = true;
                 }
+                final boolean finalPidExist = pidExist;
+                manageServer.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        manageServer.setChecked(finalPidExist);
+                    }
+                });
 
             }
         }).start();
@@ -252,14 +197,6 @@ public class HomeActivity extends SherlockFragmentActivity {
 
 
     protected void checkIfCoreInstalled() {
-
-        final Runnable enableRunnable = new Runnable() {
-            @Override
-            public void run() {
-                //so required file exist so enable the server feature
-                //  manageServer.setEnabled(true);
-            }
-        };
 
         new Thread(new Runnable() {
             @Override
