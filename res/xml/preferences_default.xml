@@ -1,16 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ /**
-  ~  * This file is part of DroidPHP
-  ~  *
-  ~  * (c) 2014 Shushant Kumar
-  ~  *
-  ~  * For the full copyright and license information, please view the LICENSE
-  ~  * file that was distributed with this source code.
-  ~  */
-  -->
+<?xml version="1.0" encoding="utf-8"?>
+
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- not yet implemented -->
-    <!--
+
     <PreferenceCategory android:title="CONFIGURATIONS">
         <CheckBoxPreference
                 android:title="Lock Wifi"
@@ -30,8 +22,13 @@
                 android:key="enable_server_on_boot"
                 android:summary="Launch web server service when the device (re)boots"
                 android:defaultValue="false"/>
+        <CheckBoxPreference
+
+            android:title="Start Web Server on Startup"
+            android:key="enable_server_on_app_startup"
+            android:summary="Launch web server service when the application starts"
+            android:defaultValue="false"/>
     </PreferenceCategory>
-    -->
     <PreferenceCategory android:title="OTHERS">
         <Preference
                 android:title="GitHub"
