@@ -28,6 +28,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
+            android:name=".BaseApplication"
             android:theme="@style/Theme.DroidPHP"
             android:label="@string/app_name"
             android:icon="@drawable/ic_launcher"
@@ -42,11 +43,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
-
-            <receiver android:name="org.opendroidphp.app.services.OnStartupReceiver">
+            <receiver android:name="org.opendroidphp.app.services.StartServiceAtBootReceiver" >
                 <intent-filter>
-                    <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                    <category android:name="android.intent.category.HOME"/>
+                    <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                    <category android:name="android.intent.category.HOME" />
                 </intent-filter>
             </receiver>
 
@@ -56,5 +57,12 @@
                 android:label="@string/settings"
                 android:name=".Preferences"
                 android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+
+        <service
+            android:name="org.opendroidphp.app.services.ServerService"
+            android:icon="@drawable/ic_launcher"
+            android:label="Server is running" >
+        </service>
+
     </application>
 </manifest>
