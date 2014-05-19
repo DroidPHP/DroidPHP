@@ -1,16 +1,5 @@
-/*
- * *
- *  * This file is part of DroidPHP
- *  *
- *  * (c) 2014 Shushant Kumar
- *  *
- *  * For the full copyright and license information, please view the LICENSE
- *  * file that was distributed with this source code.
- *
- */
 package org.opendroidphp.app;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -22,15 +11,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
-import org.opendroidphp.app.common.inject.InjectView;
-import org.opendroidphp.app.common.inject.Injector;
 import org.opendroidphp.app.common.tasks.DestroyServer;
 import org.opendroidphp.app.common.utils.FileUtils;
 import org.opendroidphp.app.fragments.dialogs.AboutDialogFragment;
@@ -49,7 +35,6 @@ import de.ankri.views.Switch;
 @android.annotation.TargetApi(Build.VERSION_CODES.GINGERBREAD)
 public class HomeActivity extends SherlockFragmentActivity {
 
-    @InjectView(R.id.switch_lighttpd_php)
     private Switch manageServer;
 
     private AtomicBoolean isInstalled = new AtomicBoolean(false);
@@ -102,7 +87,7 @@ public class HomeActivity extends SherlockFragmentActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Injector.get(this).inject();
+        manageServer = (Switch) findViewById(R.id.switch_lighttpd_php);
         manageServer.setEnabled(true);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
