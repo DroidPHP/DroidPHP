@@ -121,12 +121,6 @@ public class InstallProgressDialogFragment extends SherlockDialogFragment {
 
                 if (values[0].equals("DONE")) {
 
-//                    ToastUtils.toast(
-//                            getSherlockActivity(),
-//                            getString(R.string.installed),
-//                            Gravity.BOTTOM,
-//                            Toast.LENGTH_LONG).show();
-
                     IcsToast.makeText(
                             getSherlockActivity(), getString(R.string.core_apps_installed), Toast.LENGTH_LONG)
                             .show();
@@ -134,12 +128,6 @@ public class InstallProgressDialogFragment extends SherlockDialogFragment {
                 }
 
                 if (values[0].equals("ERROR")) {
-
-//                    ToastUtils.toast(
-//                            getSherlockActivity(),
-//                            getString(R.string.install_failed),
-//                            Gravity.BOTTOM,
-//                            Toast.LENGTH_LONG).show();
                     IcsToast.makeText(
                             getSherlockActivity(), getString(R.string.install_failed), Toast.LENGTH_LONG)
                             .show();
