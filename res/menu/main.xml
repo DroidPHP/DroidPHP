@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-            android:icon="@drawable/web_site"
-            android:id="@+id/web_admin"
-            android:title="@string/web_admin"
-            android:titleCondensed="@string/web_admin"
-            android:showAsAction="ifRoom|withText"/>
+        android:icon="@drawable/web_site"
+        android:id="@+id/web_admin"
+        android:title="@string/web_admin"
+        android:titleCondensed="@string/web_admin"
+        android:showAsAction="ifRoom|withText" />
     <item
-            android:icon="@drawable/settings"
-            android:id="@+id/settings"
-            android:title="@string/settings"
-            android:titleCondensed="@string/settings"
-            android:showAsAction="ifRoom|withText"/>
+        android:icon="@drawable/web_site"
+        android:id="@+id/sql_admin"
+        android:title="@string/sql_admin"
+        android:titleCondensed="@string/web_admin"
+        android:showAsAction="ifRoom|withText" />
+
     <item
-            android:icon="@drawable/about"
-            android:id="@+id/about"
-            android:title="@string/about"
-            android:titleCondensed="@string/about"
-            android:showAsAction="ifRoom|withText"/>
+        android:icon="@drawable/settings"
+        android:id="@+id/settings"
+        android:title="@string/settings"
+        android:titleCondensed="@string/settings"
+        android:showAsAction="ifRoom|withText" />
+    <item
+        android:icon="@drawable/about"
+        android:id="@+id/about"
+        android:title="@string/about"
+        android:titleCondensed="@string/about"
+        android:showAsAction="ifRoom|withText" />
 </menu>

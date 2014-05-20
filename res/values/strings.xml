@@ -6,6 +6,7 @@
 
     <string name="app_name">DroidPHP</string>
     <string name="web_admin">Web Admin</string>
+    <string name="sql_admin">SQL Admin</string>
     <string name="settings">Settings</string>
     <string name="about">About</string>
     <string name="close">Close</string>
