@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/main_container"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:background="#ffdedede"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/sql_admin"
+                android:background="#ffffffff"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20.0dip"
+                android:layout_marginTop="20.0dip"
+                android:layout_marginRight="20.0dip">
+
+                <TextView
+                    android:textSize="25.0sp"
+                    android:textColor="#ff6b9a3e"
+                    android:background="@drawable/title_bg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10.0dip"
+                    android:text="@string/sql_admin" />
+
+                <TextView
+                    android:textSize="14.0sp"
+                    android:textColor="#ffaaaaaa"
+                    android:id="@+id/update_msg"
+                    android:paddingLeft="10.0dip"
+                    android:paddingRight="10.0dip"
+                    android:paddingBottom="10.0dip"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/shell_help" />
+
+                <View
+                    android:background="#ffdddddd"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1.0dip" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/command"
+                        style="@style/EditTextDroidphp"
+                        android:textSize="18.0sp"
+                        android:paddingLeft="10.0dip"
+                        android:paddingTop="10.0dip"
+                        android:paddingRight="10.0dip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter your command" />
+
+                    <View
+                        android:layout_gravity="right"
+                        android:layout_width="15.0dip"
+                        android:layout_height="1.0dip" />
+
+                    <Button
+                        style="@style/ButtonDroidphp"
+                        android:textSize="14.0sp"
+                        android:textColor="#ff6b9a3e"
+                        android:minHeight="48.0dip"
+                        android:background="@drawable/btn_dialog"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Run"
+                        android:id="@+id/run_cmd" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/result_layout"
+
+                android:orientation="vertical"
+                android:background="#ffffffff"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20.0dip"
+                android:layout_marginTop="20.0dip"
+                android:layout_marginRight="20.0dip">
+
+                <TextView
+                    android:textSize="25.0sp"
+                    android:textColor="#ff6b9a3e"
+                    android:background="@drawable/title_bg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10.0dip"
+                    android:text="@string/mysql_result" />
+
+
+                <WebView
+                    android:textSize="14.0sp"
+                    android:textColor="#ffaaaaaa"
+                    android:id="@+id/shell_result"
+                    android:paddingLeft="10.0dip"
+                    android:paddingRight="10.0dip"
+                    android:paddingBottom="10.0dip"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="MYSQL Mointor shell result" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

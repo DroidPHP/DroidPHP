@@ -12,6 +12,7 @@
     <string name="close">Close</string>
     <string name="message">Message</string>
     <string name="please_read_me">"<a href="http://github.com/droidphp">DroidPHP</a> is an free and opensource project developed for running PHP and mySQL based Application on your android device"</string>
+    <string name="shell_help"><strong>Welcome to the MySQL monitor!</strong>\n\nCommands end with ; or \\g.\nType \'help;\' or \'\\h\' for help.\n</string>
     <string name="more_info">More Info</string>
     <string name="web_server">Web Server</string>
     <string name="running">RUNNING</string>
@@ -87,14 +88,5 @@
     <string name="detected_link2sd_text">Sorry your device is already installed Link2SD application,
         you must first uninstall Link2SD for the first time!
     </string>
-
-    <string name="action_settings">Settings</string>
-    <string name="title_section1">Add Command</string>
-    <string name="title_section2">Boot Commands</string>
-    <string name="title_section3">Favourite Commands</string>
-    <string name="boot_but_text">Add to Boot Commands</string>
-    <string name="fav_but_text">Add to Favourite Commands</string>
-    <string name="refresh">Refresh Command List</string>
-    <string name="exec_prog">Executing , please wait</string>
-    <string name="quick_menu">Quick Menu</string>
+    <string name="mysql_result">SQL Result</string>
 </resources>
