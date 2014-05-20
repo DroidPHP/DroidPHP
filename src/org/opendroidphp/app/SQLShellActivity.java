@@ -5,13 +5,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
-import org.opendroidphp.app.common.utils.FileUtils;
 import org.opendroidphp.app.common.utils.ShellOutputFormatter;
 
 import java.io.BufferedReader;
@@ -24,7 +23,7 @@ import java.io.OutputStream;
 public class SQLShellActivity extends SherlockActivity {
 
     private Button runCommand;
-    private WebView shellResult;
+    private TextView shellResult;
 
     private static Process proc;
     private static InputStream stdout;
@@ -41,7 +40,7 @@ public class SQLShellActivity extends SherlockActivity {
         setContentView(R.layout.activity_sqlshell);
         handler = new Handler();
         runCommand = (Button) findViewById(R.id.run_cmd);
-        shellResult = (WebView) findViewById(R.id.shell_result);
+        shellResult = (TextView) findViewById(R.id.shell_result);
 
         if (proc == null) {
             initialize();
@@ -142,18 +141,8 @@ public class SQLShellActivity extends SherlockActivity {
         @Override
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
-
-            try {
-
-                String sqlView = FileUtils.convertToString(getAssets().open("sql_result.html"));
-                sqlView.replace(":query_executed", values[0]);
-                shellResult.loadData(sqlView, "text/html", "UTF-8");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            shellResult.setText(ShellOutputFormatter.toHTML(values[0]));
         }
-
     }
 
 
