@@ -161,6 +161,8 @@ public class HomeActivity extends SherlockFragmentActivity {
                     startActivity(intent);
                 }
                 return true;
+            case R.id.sql_admin:
+                startActivity(new Intent(this, SQLShellActivity.class));
 
             case R.id.settings:
 
