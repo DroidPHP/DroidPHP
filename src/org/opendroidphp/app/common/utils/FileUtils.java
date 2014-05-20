@@ -2,7 +2,10 @@ package org.opendroidphp.app.common.utils;
 
 import org.opendroidphp.app.Constants;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * Static method for helping user to validates servers configurations
@@ -35,5 +38,19 @@ public class FileUtils {
 
     }
 
+    public static String convertToString(InputStream is) {
+
+        BufferedReader bf = new BufferedReader(new InputStreamReader(is));
+        String tmp;
+        String buff = "";
+        try {
+            while ((tmp = bf.readLine()) != null) {
+                buff += tmp;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return buff;
+    }
 
 }
