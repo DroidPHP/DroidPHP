@@ -1,9 +1,11 @@
 package org.opendroidphp.app;
 
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,8 +58,10 @@ public class SQLShellActivity extends SherlockActivity {
             return;
         }
 
-        String username = "root";
-        String password = "";
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String username = preferences.getString("mysql_username", "root");
+        String password = preferences.getString("mysql_password", "");
 
         String[] baseShell = new String[]{
                 Constants.MYSQL_MONITOR_SBIN_LOCATION, "-h",
