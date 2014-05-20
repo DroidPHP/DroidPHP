@@ -1,10 +1,11 @@
 package org.opendroidphp.app.common.tasks;
 
 import org.opendroidphp.app.Constants;
-import org.opendroidphp.app.common.shell.SH;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import eu.chainfire.libsuperuser.Shell;
 
 public class DestroyServer implements Runnable {
 
@@ -24,6 +25,6 @@ public class DestroyServer implements Runnable {
         command.add(Constants.BUSYBOX_SBIN_LOCATION + " killall mysqld");
         command.add(Constants.BUSYBOX_SBIN_LOCATION + " killall php");
 
-        SH.run(command);
+        Shell.SH.run(command);
     }
 }

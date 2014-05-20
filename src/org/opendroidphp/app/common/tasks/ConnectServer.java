@@ -4,16 +4,14 @@ import android.os.Environment;
 
 import org.apache.commons.io.FileUtils;
 import org.opendroidphp.app.Constants;
-import org.opendroidphp.app.common.shell.SH;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Created by shushant on 3/19/14.
- */
+import eu.chainfire.libsuperuser.Shell;
+
 public class ConnectServer implements Runnable {
 
     protected static String EXTERNAL_DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/droidphp/";
@@ -37,7 +35,7 @@ public class ConnectServer implements Runnable {
         command.add(CHANGE_SBIN_PERMISSION + " " + Constants.BUSYBOX_SBIN_LOCATION);
 
         try {
-            SH.run(command);
+            Shell.SH.run(command);
 
         } catch (Exception e) {
 
@@ -77,7 +75,8 @@ public class ConnectServer implements Runnable {
         command.add("/system/bin/chmod 755 " + Constants.INTERNAL_LOCATION + "/tmp");
 
 
-        SH.run(command);
+        Shell.SH.run(command);
+
 
 
     }
