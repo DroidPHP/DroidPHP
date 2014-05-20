@@ -28,6 +28,20 @@
             android:summary="Launch web server service when the application starts"
             android:defaultValue="false"/>
     </PreferenceCategory>
+    <PreferenceCategory android:title="MYSQL SERVER" >
+        <EditTextPreference
+            android:defaultValue="root"
+            android:dialogTitle="Choose username"
+            android:key="mysql_username"
+            android:summary="Click to change default mysql username"
+            android:title="Update Username" />
+        <EditTextPreference
+            android:defaultValue=""
+            android:dialogTitle="Choose password"
+            android:key="mysql_password"
+            android:summary="Click to change password for username"
+            android:title="Update Password" />
+    </PreferenceCategory>
     <PreferenceCategory android:title="OTHERS">
         <Preference
                 android:title="GitHub"
