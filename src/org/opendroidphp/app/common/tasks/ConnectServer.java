@@ -31,6 +31,7 @@ public class ConnectServer implements Runnable {
         command.add(CHANGE_SBIN_PERMISSION + " " + Constants.LIGHTTPD_SBIN_LOCATION);
         command.add(CHANGE_SBIN_PERMISSION + " " + Constants.PHP_SBIN_LOCATION);
         command.add(CHANGE_SBIN_PERMISSION + " " + Constants.MYSQL_DAEMON_SBIN_LOCATION);
+        command.add(CHANGE_SBIN_PERMISSION + " " + Constants.MYSQL_MONITOR_SBIN_LOCATION);
         //wtf, how could i forgot about swiss army knife
         command.add(CHANGE_SBIN_PERMISSION + " " + Constants.BUSYBOX_SBIN_LOCATION);
 
