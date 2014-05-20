@@ -141,7 +141,7 @@ public class SQLShellActivity extends SherlockActivity {
         @Override
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
-            shellResult.setText(ShellOutputFormatter.toHTML(values[0]));
+            shellResult.append(ShellOutputFormatter.toHTML(values[0]));
         }
     }
 
