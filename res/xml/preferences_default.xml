@@ -28,6 +28,16 @@
             android:summary="Launch web server service when the application starts"
             android:defaultValue="false"/>
     </PreferenceCategory>
+
+    <PreferenceCategory android:title="WEB SERVER" >
+        <EditTextPreference
+            android:defaultValue="8080"
+            android:dialogTitle="Change Port"
+            android:key="server_port"
+            android:summary="Click to change default port"
+            android:title="Update Port" />
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="MYSQL SERVER" >
         <EditTextPreference
             android:defaultValue="root"
