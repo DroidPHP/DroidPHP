@@ -18,8 +18,9 @@ import android.widget.Toast;
 import com.actionbarsherlock.internal.widget.IcsToast;
 
 import org.opendroidphp.app.R;
-import org.opendroidphp.app.common.shell.SH;
 import org.opendroidphp.app.common.tasks.ConnectServer;
+
+import eu.chainfire.libsuperuser.Shell;
 
 public class ServerService extends Service {
 
@@ -120,7 +121,7 @@ public class ServerService extends Service {
 
             while (true) {
 
-                String res = SH.run("ps").get(0);
+                String res = Shell.SH.run("ps").get(0);
                 if (!res.contains("php") && !res.contains("lighttpd") && !res.contains("mysqld")) {
                     handler.post(new Runnable() {
                         @Override

@@ -57,6 +57,9 @@
                 android:label="@string/settings"
                 android:name=".Preferences"
                 android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+        <activity
+            android:label="SQL Shell"
+            android:name=".SQLShellActivity"/>
 
         <service
             android:name="org.opendroidphp.app.services.ServerService"

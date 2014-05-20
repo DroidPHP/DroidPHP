@@ -4,8 +4,13 @@ public class ShellOutputFormatter {
 
     public static String toHTML(String mString) {
 
+        String templateView = "</style>.prettyprint {\n" +
+                "        padding: 8px;\n" +
+                "        background-color: #f7f7f9;\n" +
+                "        border: 1px solid #e1e1e8;\n" +
+                "        }</style>" + "<pre class=\"prettyprint\">Hell</pre>";
         /**
-         * Replace all repeating whitespace with one single whilespace
+         * Replace all repeating whitespace with one single whitespace
          */
 
         mString = mString.replaceAll("\\s+", " ");
