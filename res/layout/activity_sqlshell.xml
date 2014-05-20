@@ -107,7 +107,7 @@
                     android:text="@string/mysql_result" />
 
 
-                <WebView
+                <TextView
                     android:textSize="14.0sp"
                     android:textColor="#ffaaaaaa"
                     android:id="@+id/shell_result"
