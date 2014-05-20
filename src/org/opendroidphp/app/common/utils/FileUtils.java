@@ -1,9 +1,4 @@
 package org.opendroidphp.app.common.utils;
-
-/**
- * Created by shushant on 3/19/14.
- */
-
 import org.opendroidphp.app.Constants;
 
 import java.io.File;
