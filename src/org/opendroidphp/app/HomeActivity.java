@@ -161,10 +161,14 @@ public class HomeActivity extends SherlockFragmentActivity {
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
 
+        String basePort = preferences.getString("server_port", "8080");
+
         switch (item.getItemId()) {
 
             case R.id.web_admin:
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://localhost:8080"));
+                Intent intent;
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(String.
+                        format("http://localhost:%s", basePort)));
                 intent = Intent.createChooser(intent, "Choose browser");
 
                 if (intent != null) {
@@ -177,7 +181,7 @@ public class HomeActivity extends SherlockFragmentActivity {
 
             case R.id.settings:
 
-                Intent prefIntent = new Intent(getBaseContext(), Preferences.class);
+                Intent prefIntent = new Intent(this, Preferences.class);
                 startActivity(prefIntent);
                 return true;
 
