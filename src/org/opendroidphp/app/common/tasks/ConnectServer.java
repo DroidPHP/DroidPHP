@@ -17,6 +17,7 @@ public class ConnectServer implements Runnable {
     protected static String EXTERNAL_DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/droidphp/";
     protected final static String CHANGE_SBIN_PERMISSION = "/system/bin/chmod 777";
     protected String baseShell;
+    protected String basePort;
 
     /**
      * Set shell binary to use. Usually "sh" or "su"
@@ -26,6 +27,17 @@ public class ConnectServer implements Runnable {
 
     public ConnectServer setShell(String shell) {
         baseShell = shell;
+        return this;
+    }
+
+    /**
+     * Set port to use
+     *
+     * @param port port to use
+     */
+
+    public ConnectServer setServerPort(String port) {
+        basePort = port;
         return this;
     }
 
