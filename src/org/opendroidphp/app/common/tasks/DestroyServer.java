@@ -36,6 +36,6 @@ protected String baseShell;
 
         if (baseShell == null) baseShell = "sh";
 
-        Shell.run("sh", command, null, false);
+        Shell.run(baseShell, command, null, false);
     }
 }
