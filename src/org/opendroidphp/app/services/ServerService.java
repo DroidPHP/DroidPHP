@@ -97,7 +97,12 @@ public class ServerService extends Service {
         if (preferences.getBoolean("enable_lock_wifi", false)) {
             //
         }
-        new Thread(new ConnectServer()).start();
+        String baseShell = (!preferences.getBoolean("run_as_su", false)) ? "sh" : "su";
+
+        new Thread(
+                new ConnectServer().
+                        setShell(baseShell)
+        ).start();
         //(new ServerListener()).start();
 
 

@@ -9,6 +9,11 @@
                 android:summary="Keep wifi active when the server is running"
                 android:defaultValue="false"/>
         <CheckBoxPreference
+            android:title="Enable Root"
+            android:key="run_as_root"
+            android:summary="Execute server as SU"
+            android:defaultValue="false"/>
+        <CheckBoxPreference
                 android:title="Screen Always On"
                 android:key="enable_screen_on"
                 android:summary="The screen never enter sleep mode when the server is running"
