@@ -13,6 +13,7 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.PowerManager;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.actionbarsherlock.internal.widget.IcsToast;
@@ -97,7 +98,7 @@ public class ServerService extends Service {
         if (preferences.getBoolean("enable_lock_wifi", false)) {
             //
         }
-        String baseShell = (!preferences.getBoolean("run_as_su", false)) ? "sh" : "su";
+        String baseShell = (!preferences.getBoolean("run_as_root", false)) ? "sh" : "su";
 
         new Thread(
                 new ConnectServer().
