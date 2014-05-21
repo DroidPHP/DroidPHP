@@ -16,7 +16,18 @@ public class ConnectServer implements Runnable {
 
     protected static String EXTERNAL_DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/droidphp/";
     protected final static String CHANGE_SBIN_PERMISSION = "/system/bin/chmod 777";
+    protected String baseShell;
 
+    /**
+     * Set shell binary to use. Usually "sh" or "su"
+     *
+     * @param shell Shell to use
+     */
+
+    public ConnectServer setShell(String shell) {
+        baseShell = shell;
+        return this;
+    }
 
     @Override
     public void run() {
@@ -32,21 +43,11 @@ public class ConnectServer implements Runnable {
         command.add(CHANGE_SBIN_PERMISSION + " " + Constants.PHP_SBIN_LOCATION);
         command.add(CHANGE_SBIN_PERMISSION + " " + Constants.MYSQL_DAEMON_SBIN_LOCATION);
         command.add(CHANGE_SBIN_PERMISSION + " " + Constants.MYSQL_MONITOR_SBIN_LOCATION);
-        //wtf, how could i forgot about swiss army knife
         command.add(CHANGE_SBIN_PERMISSION + " " + Constants.BUSYBOX_SBIN_LOCATION);
-
-        try {
-            Shell.SH.run(command);
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-        }
 
         try {
 
             checkFilesystem();
-
             createOrRestoreConfiguration(
                     Constants.LIGTTTPD_CONF_LOCATION, "lighttpd.conf");
             createOrRestoreConfiguration(
@@ -58,6 +59,14 @@ public class ConnectServer implements Runnable {
 
             e.printStackTrace();
         }
+
+        command.add(String.format(
+                Locale.ENGLISH,
+                "%s -b 127.0.0.1:9786 -c %s >> %s",
+                Constants.PHP_SBIN_LOCATION,
+                Constants.PHP_INI_LOCATION,
+                EXTERNAL_DIRECTORY + "/logs/php/fcgiserver.log"));
+
         command.add(String.format(
 
                 Locale.ENGLISH,
@@ -75,9 +84,24 @@ public class ConnectServer implements Runnable {
         ));
         command.add("/system/bin/chmod 755 " + Constants.INTERNAL_LOCATION + "/tmp");
 
+        //PHP Environment Variable
+        String[] envs = new String[]{
+                "PHP_FCGI_CHILDERN=3",
+                "PHP_FCGI_MAX_REQUEST=1000"
+        };
 
-        Shell.SH.run(command);
+        String commands[] = new String[command.size()];
+        int i = 0;
+        //@TODO: simpler way to convert List to String[]
+        for (String eachCommand : command) {
+            commands[i] = eachCommand;
+            i++;
+        }
+        command.clear();
 
+        if (baseShell == null) baseShell = "sh";
+
+        Shell.run(baseShell, commands, envs, false);
 
     }
 
@@ -115,7 +139,7 @@ public class ConnectServer implements Runnable {
                 new File(confFilename), "UTF-8");
 
         FileUtils.writeStringToFile(new File(
-                        Environment.getExternalStorageDirectory().getPath() + "/droidphp/conf/" + fileName), confValue, "UTF-8"
+                        EXTERNAL_DIRECTORY + "/conf/" + fileName), confValue, "UTF-8"
         );
 
     }
