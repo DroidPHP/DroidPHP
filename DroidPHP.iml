@@ -2,7 +2,9 @@
 <module type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="android" name="Android">
-      <configuration />
+      <configuration>
+        <option name="UPDATE_PROPERTY_FILES" value="false" />
+      </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
@@ -16,6 +18,7 @@
     <orderEntry type="library" exported="" name="commons-lite-1.14" level="project" />
     <orderEntry type="module" module-name="actionbarsherlock" exported="" />
     <orderEntry type="module" module-name="SwitchCompatLibrary" exported="" />
+    <orderEntry type="module" module-name="libsuperuser" exported="" />
   </component>
 </module>
 
