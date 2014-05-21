@@ -1,3 +1,17 @@
+
+* 1.2.0 (2014-5-21)
+  * ability to run server as root
+  * ability to keep device stay on
+  * ability to execuate SQL command
+  * ability to run server on boot
+  * ability to run server on app startup
+  * ability to change default server port
+  * ability to change default mysql login
+  * done some major optimizition
+  * added -SIGTERM option to killall command to idealy terminal the process
+  * done changes to lighttpd.conf to make it compitable with root
+  * fixed several bug
+  
 * 1.1.1 (2014-3-30)
   * fix proguard bug causing start-up crash
 * 1.1.0 (2014-3-28)
