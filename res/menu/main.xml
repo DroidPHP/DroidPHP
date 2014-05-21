@@ -7,7 +7,7 @@
         android:titleCondensed="@string/web_admin"
         android:showAsAction="ifRoom|withText" />
     <item
-        android:icon="@drawable/web_site"
+        android:icon="@drawable/memory"
         android:id="@+id/sql_admin"
         android:title="@string/sql_admin"
         android:titleCondensed="@string/web_admin"
