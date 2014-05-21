@@ -14,6 +14,7 @@ import eu.chainfire.libsuperuser.Shell;
 
 public class ConnectServer implements Runnable {
 
+    protected String SERV_PORT_REGEX = "server.port.*";
     protected static String EXTERNAL_DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/droidphp/";
     protected final static String CHANGE_SBIN_PERMISSION = "/system/bin/chmod 777";
     protected String baseShell;
@@ -60,12 +61,17 @@ public class ConnectServer implements Runnable {
         try {
 
             checkFilesystem();
+
             createOrRestoreConfiguration(
                     Constants.LIGTTTPD_CONF_LOCATION, "lighttpd.conf");
             createOrRestoreConfiguration(
                     Constants.PHP_INI_LOCATION, "php.ini");
             createOrRestoreConfiguration(
                     Constants.MYSQL_INI_LOCATION, "mysql.ini");
+
+            if (basePort != null) {
+                changeServerData(basePort);
+            }
 
         } catch (Exception e) {
 
@@ -138,10 +144,26 @@ public class ConnectServer implements Runnable {
 
     }
 
+    protected void changeServerData(String port) {
+
+        try {
+
+            File confFile = new File(EXTERNAL_DIRECTORY + "/conf/lighttpd.conf");
+
+            String sb = FileUtils.readFileToString(confFile, "UTF-8");
+            sb.replaceFirst(SERV_PORT_REGEX, String.format(Locale.ENGLISH, "server.port                              = %s", port));
+
+            FileUtils.writeStringToFile(confFile, sb, "UTF-8");
+        } catch (Exception e) {
+
+        }
+    }
+
     protected void createOrRestoreConfiguration(String confFilename, String fileName) throws Exception {
 
-        if (new File(
-                EXTERNAL_DIRECTORY + "/conf/" + fileName).exists()) {
+        File f = new File(EXTERNAL_DIRECTORY + "/conf/" + fileName);
+
+        if (f.exists()) {
             //ya, file does exist we don't need to recreate the configuration
             // lets return from the method
             return;
@@ -150,9 +172,7 @@ public class ConnectServer implements Runnable {
         String confValue = FileUtils.readFileToString(
                 new File(confFilename), "UTF-8");
 
-        FileUtils.writeStringToFile(new File(
-                        EXTERNAL_DIRECTORY + "/conf/" + fileName), confValue, "UTF-8"
-        );
+        FileUtils.writeStringToFile(f, confValue, "UTF-8");
 
     }
 
