@@ -78,7 +78,14 @@ public class HomeActivity extends SherlockFragmentActivity {
 
                 startService(new Intent(HomeActivity.this, ServerService.class));
             } else {
-                new Thread(new DestroyServer()).start();
+
+                String baseShell = (!preferences.getBoolean("run_as_root", false)) ? "sh" : "su";
+
+                new Thread(
+                        new DestroyServer().
+                                setShell(baseShell)
+                ).start();
+
                 NotificationManager noti = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                 noti.cancel(143);
             }

@@ -9,22 +9,33 @@ import eu.chainfire.libsuperuser.Shell;
 
 public class DestroyServer implements Runnable {
 
+protected String baseShell;
+    /**
+     * Set shell binary to use. Usually "sh" or "su"
+     *
+     * @param shell Shell to use
+     */
+
+    public DestroyServer setShell(String shell) {
+        baseShell = shell;
+        return this;
+    }
 
     @Override
     public void run() {
-
-
         initialize();
     }
 
     protected void initialize() {
 
-        List<String> command = new ArrayList<String>();
+        String[] command = new String[]{
+                Constants.BUSYBOX_SBIN_LOCATION + " killall -SIGTERM lighttpd",
+                Constants.BUSYBOX_SBIN_LOCATION + " killall -SIGTERM mysqld",
+                Constants.BUSYBOX_SBIN_LOCATION + " killall -SIGTERM php"
+        };
 
-        command.add(Constants.BUSYBOX_SBIN_LOCATION + " killall lighttpd");
-        command.add(Constants.BUSYBOX_SBIN_LOCATION + " killall mysqld");
-        command.add(Constants.BUSYBOX_SBIN_LOCATION + " killall php");
+        if (baseShell == null) baseShell = "sh";
 
-        Shell.SH.run(command);
+        Shell.run("sh", command, null, false);
     }
 }
