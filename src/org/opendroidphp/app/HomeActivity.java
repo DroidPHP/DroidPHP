@@ -1,5 +1,6 @@
 package org.opendroidphp.app;
 
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -78,6 +79,8 @@ public class HomeActivity extends SherlockFragmentActivity {
                 startService(new Intent(HomeActivity.this, ServerService.class));
             } else {
                 new Thread(new DestroyServer()).start();
+                NotificationManager noti = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                noti.cancel(143);
             }
         }
     };
