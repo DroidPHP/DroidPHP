@@ -2,14 +2,12 @@ package org.opendroidphp.app.common.tasks;
 
 import org.opendroidphp.app.Constants;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import eu.chainfire.libsuperuser.Shell;
 
 public class DestroyServer implements Runnable {
 
-protected String baseShell;
+    protected String baseShell;
+
     /**
      * Set shell binary to use. Usually "sh" or "su"
      *
