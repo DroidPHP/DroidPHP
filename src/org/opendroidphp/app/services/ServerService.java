@@ -72,11 +72,11 @@ public class ServerService extends Service {
 
         NotificationManager noti = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-        Notification notification = new Notification(R.drawable.ic_launcher, "Connected to Droidphp", System.currentTimeMillis());
+        Notification notification = new Notification(R.drawable.ic_launcher, "DroidPHP service started", System.currentTimeMillis());
 
         Context context = getApplicationContext();
 
-        CharSequence contentTitle = "Droid";
+        CharSequence contentTitle = "DroidPHP";
         CharSequence contentText = "Web Service started";
 
         Intent notificationIntent = new Intent();
@@ -96,7 +96,7 @@ public class ServerService extends Service {
 
         }
         if (preferences.getBoolean("enable_lock_wifi", false)) {
-            //
+            /*  not implemented */
         }
         String baseShell = (!preferences.getBoolean("run_as_root", false)) ? "sh" : "su";
 
@@ -111,8 +111,8 @@ public class ServerService extends Service {
 
     protected void destroyService() {
 
-        NotificationManager noti = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        noti.cancel(143);
+        NotificationManager notify = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notify.cancel(143);
 
         if (wakeLock != null && wakeLock.isHeld()) {
             wakeLock.release();
