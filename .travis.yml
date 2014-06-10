@@ -9,5 +9,6 @@ before_script:
   - emulator -avd test -no-skin -no-audio -no-window &
   - chmod 777 ./wait_for_emulator
   - ./wait_for_emulator
+  - adb shell input keyevent 82 &
 
-script: mvn install -Pintegration-tests -Dandroid.device=test
+  # script: mvn install -Pintegration-tests -Dandroid.device=test
