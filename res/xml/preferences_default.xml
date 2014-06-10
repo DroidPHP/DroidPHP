@@ -68,6 +68,6 @@
         <Preference
                 android:title="Version"
                 android:key="app_version"
-                android:summary="1.1.0"/>
+                android:summary="1.2.0"/>
     </PreferenceCategory>
 </PreferenceScreen>
