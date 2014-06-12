@@ -1,10 +1,11 @@
 # DroidPHP Android App  [![Build Status](https://api.travis-ci.org/DroidPHP/DroidPHP.png?branch=master)](https://travis-ci.org/DroidPHP/DroidPHP)
 
-DroidPHP is an open-source Web Server for Android devices, allowing you to run PHP and MYSQL based appliation from your Android device The app can be downloaded on the [Play Store](https://play.google.com/store/apps/details?id=org.opendroidphp.app).
+DroidPHP is an open-source Web Server for Android devices, allowing you to run PHP and MYSQL based appliation from your Android device The app can be downloaded on the [Google Drive](https://drive.google.com/file/d/0B1YIxncPig-AbUFHaV9vNU1MZFU/edit?usp=sharing).
 
-<a href=https://play.google.com/store/apps/details?id=org.opendroidphp.app" alt="logo" title="Download from Google Play">
+<!--<a href=https://play.google.com/store/apps/details?id=org.opendroidphp.app" alt="logo" title="Download from Google Play">
   <img src="http://developer.android.com/images/brand/en_generic_rgb_wo_45.png">
 </a>
+-->
 
 Please see the [issues](https://github.com/droidphp/droidphp/issues) section to
 report any bugs or feature requests and to see the list of known issues.
