@@ -7,7 +7,6 @@ before_script:
   # Create and start emulator
   - echo no | android create avd --force -n test -t android-16 --abi armeabi-v7a
   - emulator -avd test -no-skin -no-audio -no-window &
-  - chmod 777 ./wait_for_emulator
   - ./wait_for_emulator
   - adb shell input keyevent 82 &
 
