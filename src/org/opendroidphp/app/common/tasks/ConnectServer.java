@@ -14,9 +14,9 @@ import eu.chainfire.libsuperuser.Shell;
 
 public class ConnectServer implements Runnable {
 
-    protected String SERV_PORT_REGEX = "server.port.*";
+    protected final static String CHANGE_PERMISSION = "/system/bin/chmod 755 ";
     protected static String EXTERNAL_DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/droidphp/";
-    protected final static String CHANGE_SBIN_PERMISSION = "/system/bin/chmod 777";
+    protected String SERV_PORT_REGEX = "server.port.*";
     protected String baseShell;
     protected String basePort;
 
@@ -52,11 +52,24 @@ public class ConnectServer implements Runnable {
         List<String> command = new ArrayList<String>();
 
 
-        command.add(CHANGE_SBIN_PERMISSION + " " + Constants.LIGHTTPD_SBIN_LOCATION);
-        command.add(CHANGE_SBIN_PERMISSION + " " + Constants.PHP_SBIN_LOCATION);
-        command.add(CHANGE_SBIN_PERMISSION + " " + Constants.MYSQL_DAEMON_SBIN_LOCATION);
-        command.add(CHANGE_SBIN_PERMISSION + " " + Constants.MYSQL_MONITOR_SBIN_LOCATION);
-        command.add(CHANGE_SBIN_PERMISSION + " " + Constants.BUSYBOX_SBIN_LOCATION);
+        command.add(CHANGE_PERMISSION
+                .concat(Constants.LIGHTTPD_SBIN_LOCATION));
+
+        command.add(CHANGE_PERMISSION
+                .concat(Constants.PHP_SBIN_LOCATION));
+
+        command.add(CHANGE_PERMISSION
+                .concat(Constants.MYSQL_DAEMON_SBIN_LOCATION));
+
+        command.add(CHANGE_PERMISSION
+                .concat(Constants.MYSQL_MONITOR_SBIN_LOCATION));
+
+        command.add(CHANGE_PERMISSION
+                .concat(Constants.BUSYBOX_SBIN_LOCATION));
+
+        command.add(CHANGE_PERMISSION
+                .concat(Constants.INTERNAL_LOCATION + "/tmp"));
+
 
         try {
 
@@ -78,29 +91,30 @@ public class ConnectServer implements Runnable {
             e.printStackTrace();
         }
 
+        // hack for running process in parallel
         command.add(String.format(
                 Locale.ENGLISH,
-                "%s -b 127.0.0.1:9786 -c %s >> %s",
-                Constants.PHP_SBIN_LOCATION,
-                Constants.PHP_INI_LOCATION,
-                EXTERNAL_DIRECTORY + "/logs/php/fcgiserver.log"));
-
-        command.add(String.format(
-
-                Locale.ENGLISH,
-                "%s -f %s -D",
+                "%s -f %s -D 1>/dev/null 1>/dev/null 2>&1 & pid_lighttpd=$!",
                 Constants.LIGHTTPD_SBIN_LOCATION,
                 Constants.PROJECT_LOCATION + "/conf/lighttpd.conf"
         ));
-        command.add(String.format(
 
+        command.add(String.format(
                 Locale.ENGLISH,
-                "%s --defaults-file=%s --user=root --language=%s",
+                "%s --defaults-file=%s --user=root --language=%s 1>/dev/null 2>&1 & pid_mysql=$!",
                 Constants.MYSQL_DAEMON_SBIN_LOCATION,
                 Constants.PROJECT_LOCATION + "/conf/mysql.ini",
                 Constants.MYSQL_SHARE_DATA_LOCATION + "/mysql/english"
         ));
-        command.add("/system/bin/chmod 755 " + Constants.INTERNAL_LOCATION + "/tmp");
+
+        command.add(String.format(
+                Locale.ENGLISH,
+                "%s -b 127.0.0.1:9786 -c %s 1>/dev/null 2>&1 & pid_php=$!",
+                Constants.PHP_SBIN_LOCATION,
+                Constants.PHP_INI_LOCATION
+        ));
+
+//        command.add("php=$pid_php, lighttpd=$pid_lighttpd, mysql=$pid_mysql");
 
         //PHP Environment Variable
         String[] envs = new String[]{
@@ -120,7 +134,6 @@ public class ConnectServer implements Runnable {
         if (baseShell == null) baseShell = "sh";
 
         Shell.run(baseShell, commands, envs, false);
-
     }
 
     protected void checkFilesystem() {
@@ -131,8 +144,8 @@ public class ConnectServer implements Runnable {
                 Constants.PROJECT_LOCATION + "/logs/php",
                 Constants.PROJECT_LOCATION + "/conf",
                 Constants.PROJECT_LOCATION + "/sessions",
-                Constants.INTERNAL_LOCATION + "/tmp"
-
+                Constants.INTERNAL_LOCATION + "/tmp",
+                Constants.EXTERNAL_STORAGE + "/htdocs"
         };
 
         for (String fileUri : filesUri) {
@@ -140,8 +153,6 @@ public class ConnectServer implements Runnable {
             File file = new File(fileUri);
             if (!file.exists()) file.mkdirs();
         }
-
-
     }
 
     protected void changeServerData(String port) {
@@ -163,11 +174,7 @@ public class ConnectServer implements Runnable {
 
         File f = new File(EXTERNAL_DIRECTORY + "/conf/" + fileName);
 
-        if (f.exists()) {
-            //ya, file does exist we don't need to recreate the configuration
-            // lets return from the method
-            return;
-        }
+        if (f.exists()) return;
 
         String confValue = FileUtils.readFileToString(
                 new File(confFilename), "UTF-8");
@@ -175,5 +182,4 @@ public class ConnectServer implements Runnable {
         FileUtils.writeStringToFile(f, confValue, "UTF-8");
 
     }
-
 }
