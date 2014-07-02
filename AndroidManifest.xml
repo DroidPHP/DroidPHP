@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest
-        android:versionCode="13000"
-        android:versionName="1.3.0"
-        package="org.opendroidphp.app"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.opendroidphp"
+    android:versionCode="14000"
+    android:versionName="1.4.0">
 
     <uses-sdk
-            android:minSdkVersion="7"
-            android:maxSdkVersion="19"
-            android:targetSdkVersion="17"></uses-sdk>
+        android:maxSdkVersion="19"
+        android:minSdkVersion="7"
+        android:targetSdkVersion="17"></uses-sdk>
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
-            android:name=".BaseApplication"
-            android:theme="@style/Theme.DroidPHP"
-            android:label="@string/app_name"
-            android:icon="@drawable/ic_launcher"
-            android:allowBackup="true">
+        android:name="org.opendroidphp.app.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.DroidPHP">
 
         <activity
-                android:label="@string/app_name"
-                android:name=".HomeActivity"
-                android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
+            android:name="org.opendroidphp.app.HomeActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <receiver android:name="org.opendroidphp.app.services.StartServiceAtBootReceiver" >
-                <intent-filter>
-                    <action android:name="android.intent.action.BOOT_COMPLETED" />
-
-                    <category android:name="android.intent.category.HOME" />
-                </intent-filter>
-            </receiver>
 
         </activity>
 
         <activity
-                android:label="@string/settings"
-                android:name=".Preferences"
-                android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+            android:name="org.opendroidphp.app.Preferences"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:label="@string/settings" />
         <activity
-            android:label="SQL Shell"
-            android:name=".SQLShellActivity"/>
+            android:name="org.opendroidphp.app.SQLShellActivity"
+            android:label="SQL Shell" />
 
         <service
             android:name="org.opendroidphp.app.services.ServerService"
             android:icon="@drawable/ic_launcher"
-            android:label="Server is running" >
-        </service>
+            android:label="Server is running"></service>
+
+        <receiver android:name="org.opendroidphp.app.services.OnBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
 
     </application>
 </manifest>
