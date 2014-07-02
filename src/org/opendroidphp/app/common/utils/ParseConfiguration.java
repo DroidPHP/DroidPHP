@@ -11,6 +11,30 @@ import java.util.HashMap;
 public class ParseConfiguration {
 
     /**
+     * Used for filtering the string
+     *
+     * @param filterValue String the filter
+     * @return String Filtered string
+     */
+
+    public static String filterValue(String filterValue) {
+
+        StringBuffer sb = new StringBuffer(filterValue);
+
+        if (filterValue.startsWith("\"") || filterValue.startsWith("'")) {
+            sb.setCharAt(0, ' ');
+
+        }
+        if (filterValue.endsWith("\"") || filterValue.endsWith("'")) {
+            sb.deleteCharAt(filterValue.length() - 1);
+
+        }
+
+        return sb.toString().trim();
+
+    }
+
+    /**
      * Parse the lighttpd configuration
      *
      * @param fileName A lighttpd configuration
@@ -52,30 +76,6 @@ public class ParseConfiguration {
 
         }
         return map;
-
-    }
-
-    /**
-     * Used for filtering the string
-     *
-     * @param filterValue String the filter
-     * @return String Filtered string
-     */
-
-    public static String filterValue(String filterValue) {
-
-        StringBuffer sb = new StringBuffer(filterValue);
-
-        if (filterValue.startsWith("\"") || filterValue.startsWith("'")) {
-            sb.setCharAt(0, ' ');
-
-        }
-        if (filterValue.endsWith("\"") || filterValue.endsWith("'")) {
-            sb.deleteCharAt(filterValue.length() - 1);
-
-        }
-
-        return sb.toString().trim();
 
     }
 }
