@@ -106,7 +106,7 @@
                         android:paddingLeft="10.0dip"
                         android:paddingRight="10.0dip"
                         android:paddingTop="10.0dip"
-                        android:text="@string/lighttpd_php"
+                        android:text="@string/lighttpd_php_nginx"
                         android:textSize="18.0sp"/>
 
                 <TextView
