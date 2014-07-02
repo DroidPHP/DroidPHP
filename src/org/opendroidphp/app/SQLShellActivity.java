@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
+import org.opendroidphp.R;
 import org.opendroidphp.app.common.utils.ShellOutputFormatter;
 
 import java.io.BufferedReader;
@@ -24,15 +25,53 @@ import java.io.OutputStream;
 
 public class SQLShellActivity extends SherlockActivity {
 
-    private Button runCommand;
-    private TextView shellResult;
-
     private static Process proc;
     private static InputStream stdout;
     private static OutputStream stdin;
+    private final View.OnClickListener executeQuery = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            try {
+
+                String command = ((EditText) findViewById(R.id.command))
+                        .getText()
+                        .toString();
+
+                try {
+                    stdin.write((command + "\r\n").getBytes());
+                    stdin.flush();
+                } catch (Exception e) {
+
+                }
+
+              /*  sqlSession.addCommand(command, new Shell.OnCommandResultListener() {
+                    @Override
+                    public void onCommandResult(int commandCode, int exitCode, final List<String> output) {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                if (output != null) {
+                                    for (String error : output) {
+                                        shellResult.append(error);
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });*/
+            } catch (NullPointerException e) {
+
+            }
+
+
+        }
+    };
+    private Button runCommand;
 
     //private static Shell.Interactive sqlSession;
-
+    private TextView shellResult;
     private Handler handler;
 
     @Override
@@ -120,6 +159,11 @@ public class SQLShellActivity extends SherlockActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
+
+            if (stdout == null) {
+                return null;
+            }
+
             BufferedReader buff = new BufferedReader(
                     new InputStreamReader(stdout));
 
@@ -148,46 +192,4 @@ public class SQLShellActivity extends SherlockActivity {
             shellResult.append(ShellOutputFormatter.toHTML(values[0]));
         }
     }
-
-
-    private final View.OnClickListener executeQuery = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-
-            try {
-
-                String command = ((EditText) findViewById(R.id.command))
-                        .getText()
-                        .toString();
-
-                try {
-                    stdin.write((command + "\r\n").getBytes());
-                    stdin.flush();
-                } catch (Exception e) {
-
-                }
-
-              /*  sqlSession.addCommand(command, new Shell.OnCommandResultListener() {
-                    @Override
-                    public void onCommandResult(int commandCode, int exitCode, final List<String> output) {
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                if (output != null) {
-                                    for (String error : output) {
-                                        shellResult.append(error);
-                                    }
-                                }
-                            }
-                        });
-                    }
-                });*/
-            } catch (NullPointerException e) {
-
-            }
-
-
-        }
-    };
 }
