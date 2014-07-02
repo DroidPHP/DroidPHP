@@ -11,11 +11,8 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockDialogFragment;
 
-import org.opendroidphp.app.R;
+import org.opendroidphp.R;
 
-/**
- * Created by shushant on 3/19/14.
- */
 public class AboutDialogFragment extends SherlockDialogFragment {
 
 
