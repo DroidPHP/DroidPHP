@@ -29,7 +29,8 @@ public class DestroyServer implements Runnable {
         String[] command = new String[]{
                 Constants.BUSYBOX_SBIN_LOCATION + " killall -SIGTERM lighttpd",
                 Constants.BUSYBOX_SBIN_LOCATION + " killall -SIGTERM mysqld",
-                Constants.BUSYBOX_SBIN_LOCATION + " killall -SIGTERM php"
+                Constants.BUSYBOX_SBIN_LOCATION + " killall -SIGTERM php-cgi",
+                Constants.BUSYBOX_SBIN_LOCATION + " killall -SIGTERM nginx"
         };
 
         if (baseShell == null) baseShell = "sh";
