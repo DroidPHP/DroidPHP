@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.internal.widget.IcsToast;
 
-import org.opendroidphp.app.R;
+import org.opendroidphp.R;
 import org.opendroidphp.app.common.tasks.ConnectServer;
 
 import eu.chainfire.libsuperuser.Shell;
@@ -60,13 +60,6 @@ public class ServerService extends Service {
         return mBinder;
     }
 
-    public class ServerBinder extends Binder {
-
-        ServerService getService() {
-            return ServerService.this;
-        }
-    }
-
     protected void initialize() {
 
         NotificationManager noti = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -98,11 +91,17 @@ public class ServerService extends Service {
             /*  not implemented */
         }
         String baseShell = (!preferences.getBoolean("run_as_root", false)) ? "sh" : "su";
+        String daemon = preferences.getString("use_server_httpd", "lighttpd");
+        String port = preferences.getString("server_port", "8080");
 
-        new Thread(
-                new ConnectServer().
-                        setShell(baseShell)
-        ).start();
+
+        Runnable connect = new ConnectServer()
+                .setShell(baseShell)
+                .setServer(daemon)
+                .setServerPort(port);
+
+        Thread connectThread = new Thread(connect);
+        connectThread.start();
         //(new ServerListener()).start();
 
 
@@ -118,6 +117,12 @@ public class ServerService extends Service {
         }
     }
 
+    public class ServerBinder extends Binder {
+
+        ServerService getService() {
+            return ServerService.this;
+        }
+    }
 
     class ServerListener extends Thread {
 
