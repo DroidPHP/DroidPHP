@@ -4,34 +4,35 @@
 
     <PreferenceCategory android:title="CONFIGURATIONS">
         <CheckBoxPreference
-                android:title="Lock Wifi"
+                android:defaultValue="false"
                 android:key="enable_lock_wifi"
                 android:summary="Keep wifi active when the server is running"
-                android:defaultValue="false"/>
+                android:title="Lock Wifi"/>
         <CheckBoxPreference
-            android:title="Enable Root"
+            android:defaultValue="false"
             android:key="run_as_root"
             android:summary="Execute server as SU"
-            android:defaultValue="false"/>
+            android:title="Enable Root"/>
         <CheckBoxPreference
-                android:title="Screen Always On"
+                android:defaultValue="false"
                 android:key="enable_screen_on"
                 android:summary="The screen never enter sleep mode when the server is running"
-                android:defaultValue="false"/>
+                android:title="Screen Always On"/>
     </PreferenceCategory>
+
 
     <PreferenceCategory android:title="SERVICE">
         <CheckBoxPreference
-                android:title="Start Web Server on Boot"
+                android:defaultValue="false"
                 android:key="enable_server_on_boot"
                 android:summary="Launch web server service when the device (re)boots"
-                android:defaultValue="false"/>
+                android:title="Start Web Server on Boot"/>
         <CheckBoxPreference
 
-            android:title="Start Web Server on Startup"
+            android:defaultValue="false"
             android:key="enable_server_on_app_startup"
             android:summary="Launch web server service when the application starts"
-            android:defaultValue="false"/>
+            android:title="Start Web Server on Startup"/>
     </PreferenceCategory>
 
     <PreferenceCategory android:title="WEB SERVER" >
@@ -41,6 +42,15 @@
             android:key="server_port"
             android:summary="Click to change default port"
             android:title="Update Port" />
+
+            <ListPreference
+                android:dialogTitle="Choose HTTP DAEMON"
+                android:entries="@array/server_engine_key"
+                android:entryValues="@array/server_engine_value"
+                android:key="use_server_httpd"
+                android:summary="Launch web server service with required http daemon"
+                android:title="Choose HTTP DAEMON" />
+
     </PreferenceCategory>
 
     <PreferenceCategory android:title="MYSQL SERVER" >
@@ -57,17 +67,18 @@
             android:summary="Click to change password for username"
             android:title="Update Password" />
     </PreferenceCategory>
+
     <PreferenceCategory android:title="OTHERS">
         <Preference
-                android:title="GitHub"
-                android:summary="Open a github repository">
+                android:summary="Open a github repository"
+                android:title="GitHub">
             <intent
                     android:action="android.intent.action.VIEW"
                     android:data="http://github.com/droidphp"/>
         </Preference>
         <Preference
-                android:title="Version"
                 android:key="app_version"
-                android:summary="1.2.0"/>
+                android:summary="1.2.0"
+                android:title="Version"/>
     </PreferenceCategory>
 </PreferenceScreen>
