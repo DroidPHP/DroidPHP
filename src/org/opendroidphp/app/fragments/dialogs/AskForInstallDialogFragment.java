@@ -24,14 +24,8 @@ public class AskForInstallDialogFragment extends SherlockDialogFragment {
             mDialog.cancel();
 
             InstallationDialogFragment dialogFragment = new InstallationDialogFragment();
-            //if (listener == null) {
-//               // listener.onSuccess();
-            //}
             dialogFragment.setOnInstallListener(listener);
             dialogFragment.show(getFragmentManager(), "do_install");
-
-//            new InstallProgressDialogFragment()
-//                    .show(getFragmentManager(), "do_install");
 
 
         }
@@ -41,15 +35,6 @@ public class AskForInstallDialogFragment extends SherlockDialogFragment {
         public void onClick(View view) {
 
             mDialog.dismiss();
-
-           /* ToastUtils.toast(
-                    getSherlockActivity(),
-                    getString(R.string.core_apps_not_installed),
-                    Gravity.BOTTOM,
-                    Toast.LENGTH_LONG
-            ).show();
-            */
-
 
         }
     };
