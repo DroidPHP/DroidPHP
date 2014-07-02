@@ -4,92 +4,62 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.internal.widget.IcsToast;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
+import org.opendroidphp.R;
 import org.opendroidphp.app.common.tasks.DestroyServer;
 import org.opendroidphp.app.common.utils.FileUtils;
 import org.opendroidphp.app.fragments.dialogs.AboutDialogFragment;
-import org.opendroidphp.app.fragments.dialogs.NotifyInstalltionDialogFragment;
+import org.opendroidphp.app.fragments.dialogs.AskForInstallDialogFragment;
+import org.opendroidphp.app.fragments.dialogs.OnEventListener;
 import org.opendroidphp.app.services.ServerService;
 
-import java.io.File;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import de.ankri.views.Switch;
-
-/**
- * Activity to Home Screen
- */
+import eu.chainfire.libsuperuser.Shell;
 
 @android.annotation.TargetApi(Build.VERSION_CODES.GINGERBREAD)
 public class HomeActivity extends SherlockFragmentActivity {
 
-    private Switch manageServer;
-
+    private Switch serverSwitch;
     private AtomicBoolean isInstalled = new AtomicBoolean(false);
     private SharedPreferences preferences;
 
-
-    /**
-     * Events Listeners
-     */
-    private CompoundButton.OnCheckedChangeListener manageServerEventListener = new CompoundButton.OnCheckedChangeListener() {
+    private CompoundButton.OnCheckedChangeListener changeServerState = new CompoundButton.OnCheckedChangeListener() {
 
         @Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean isEnable) {
 
-
             if (isEnable) {
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (!FileUtils.checkIfExecutableExists()) {
-
-                            boolean exitInfiniteLoop = false;
-                            SherlockDialogFragment dialogFragment = new NotifyInstalltionDialogFragment();
-                            dialogFragment.show(getSupportFragmentManager(), "install");
-                            SystemClock.sleep(150);
-
-                            //i love infinity :D
-                            // dirty hack to avoid calling ComponentExecutorPool before dialog is dismissed
-                            do {
-                                if (!dialogFragment.getDialog().isShowing()) {
-                                    exitInfiniteLoop = true;
-                                    Log.d("DIALOG", "Exit from dialog");
-                                }
-
-                            } while (!exitInfiniteLoop);
-                        }
-                    }
-                }).start();
-
                 startService(new Intent(HomeActivity.this, ServerService.class));
             } else {
 
                 String baseShell = (!preferences.getBoolean("run_as_root", false)) ? "sh" : "su";
 
-                new Thread(
-                        new DestroyServer().
-                                setShell(baseShell)
-                ).start();
+                Runnable destroyServer = new DestroyServer()
+                        .setShell(baseShell);
+                Thread thread = new Thread(destroyServer);
+                thread.start();
 
-                NotificationManager noti = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                noti.cancel(143);
+                NotificationManager notify = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                notify.cancel(143);
             }
         }
+
     };
 
     @Override
@@ -97,24 +67,23 @@ public class HomeActivity extends SherlockFragmentActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        manageServer = (Switch) findViewById(R.id.switch_lighttpd_php);
-        manageServer.setEnabled(true);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
+        serverSwitch = (Switch) findViewById(R.id.switch_lighttpd_php);
+        serverSwitch.setEnabled(true);
+
         checkIfCoreInstalled();
 
-        manageServer.setOnCheckedChangeListener(manageServerEventListener);
+        serverSwitch.setOnCheckedChangeListener(changeServerState);
 
         ((Button) findViewById(R.id.link)).setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
 
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://github.com/droidphp"));
-                //intent = Intent.createChooser(intent, "Choose browser");
                 startActivity(intent);
-
-
             }
         });
     }
@@ -126,28 +95,7 @@ public class HomeActivity extends SherlockFragmentActivity {
         if (preferences.getBoolean("enable_server_on_app_startup", false)) {
             startService(new Intent(this, ServerService.class));
         }
-        //check server status by looking lighttpd.pid file
-
-
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                boolean pidExist = false;
-
-                if ((new File(Constants.INTERNAL_LOCATION + "/tmp/lighttpd.pid").exists())) {
-                    pidExist = true;
-                }
-                final boolean finalPidExist = pidExist;
-                manageServer.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        manageServer.setChecked(finalPidExist);
-                    }
-                });
-
-            }
-        }).start();
+        new ConnectionListenerTask().execute();
     }
 
     @Override
@@ -155,7 +103,6 @@ public class HomeActivity extends SherlockFragmentActivity {
 
         getSupportMenuInflater().inflate(R.menu.main, menu);
         return true;
-
     }
 
     @Override
@@ -170,10 +117,7 @@ public class HomeActivity extends SherlockFragmentActivity {
                 intent = new Intent(Intent.ACTION_VIEW, Uri.parse(String.
                         format("http://localhost:%s", basePort)));
                 intent = Intent.createChooser(intent, "Choose browser");
-
-                if (intent != null) {
-                    startActivity(intent);
-                }
+                startActivity(intent);
                 return true;
             case R.id.sql_admin:
                 startActivity(new Intent(this, SQLShellActivity.class));
@@ -187,16 +131,14 @@ public class HomeActivity extends SherlockFragmentActivity {
 
             case R.id.about:
 
-                new AboutDialogFragment()
-                        .show(getSupportFragmentManager(), "about");
-
+                AboutDialogFragment aboutDialogFragment = new AboutDialogFragment();
+                aboutDialogFragment.show(getSupportFragmentManager(), "about");
                 return false;
         }
 
         return super.onMenuItemSelected(featureId, item);
 
     }
-
 
     protected void checkIfCoreInstalled() {
 
@@ -206,22 +148,94 @@ public class HomeActivity extends SherlockFragmentActivity {
 
                 if (!FileUtils.checkIfExecutableExists()) {
 
-                    new NotifyInstalltionDialogFragment()
-                            .show(getSupportFragmentManager(), "install");
+                    AskForInstallDialogFragment dialog = new AskForInstallDialogFragment();
 
-                    //recheck if file exist
+                    dialog.setOnEventListener(new OnEventListener() {
+
+                        @Override
+                        public void onSuccess() {
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    IcsToast.makeText(
+                                            HomeActivity.this, getString(R.string.core_apps_installed), Toast.LENGTH_LONG)
+                                            .show();
+                                }
+                            });
+
+                            startService(new Intent(HomeActivity.this, ServerService.class));
+                            new ConnectionListenerTask().execute();
+                        }
+
+                        @Override
+                        public void onFailure() {
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    IcsToast
+                                            .makeText(HomeActivity.this, getString(R.string.install_failed), Toast.LENGTH_LONG)
+                                            .show();
+                                }
+                            });
+                        }
+                    });
+
+                    dialog.show(getSupportFragmentManager(), "install");
+
                     if (FileUtils.checkIfExecutableExists()) {
                         isInstalled.set(true);
-//                         manageServer.post(enableRunnable);
                     }
-
                 }
-
             }
         }).start();
-
     }
 
 
-}
+    private class ConnectionListenerTask extends AsyncTask<Void, String, Void> {
 
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            String FIND_PROCESS = String.format(
+                    "%s ps | %s grep \"components\"",
+                    Constants.BUSYBOX_SBIN_LOCATION,
+                    Constants.BUSYBOX_SBIN_LOCATION);
+
+            List<String> rc = Shell.SH.run(FIND_PROCESS);
+
+            boolean serverListing = false;
+            boolean phpListing = false;
+            boolean mysqlListing = false;
+
+            String shellOutput = "";
+            for (String buf : rc.toArray(new String[]{})) {
+                shellOutput += buf;
+            }
+
+            serverListing = (shellOutput.contains("lighttpd") || shellOutput.contains("nginx"));
+            phpListing = shellOutput.contains("php-cgi");
+            mysqlListing = shellOutput.contains("mysqld");
+
+            if (serverListing && phpListing && mysqlListing) {
+                publishProgress("OK");
+            } else {
+                publishProgress("ERROR");
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(String... values) {
+
+            if (values[0].equals("OK")) {
+                serverSwitch.setChecked(true);
+            }
+            if (values[0].equals("ERROR")) {
+                serverSwitch.setChecked(false);
+            }
+        }
+    }
+}
