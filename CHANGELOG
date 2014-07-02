@@ -1,3 +1,27 @@
+* 1.4.0 (2014-7-3)
+   * added nginx
+   * added documents and cross compiling info
+   * fixed binaries startup failure
+   * recompiled binaries
+   * added following PHP extension:
+     * filter
+     * calander
+     * ctype
+     * DOM
+     * exif
+     * fileinfo
+     * ftp
+     * POSIX related function
+     * mhash
+     * shmop
+     * SimpleXML
+     * sysvmsg
+     * sysvsem
+     * Tokenizer
+     * XmlReader
+     * XmlWriter
+     * pcntl
+
 * 1.3.0 (2014-6-9)
   * added following PHP extension
      * mcrypt
