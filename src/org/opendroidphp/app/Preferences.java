@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 
+import org.opendroidphp.R;
+
 public class Preferences extends SherlockPreferenceActivity {
 
     @SuppressWarnings("deprecation")
