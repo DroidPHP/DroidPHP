@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-public class StartServiceAtBootReceiver extends BroadcastReceiver {
+public class OnBootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
