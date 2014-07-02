@@ -9,15 +9,33 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockDialogFragment;
 
-import org.opendroidphp.app.R;
+import org.opendroidphp.R;
 
 
-public class NotifyInstalltionDialogFragment extends SherlockDialogFragment {
+public class AskForInstallDialogFragment extends SherlockDialogFragment {
 
-    Dialog mDialog;
-    TextView titleView;
-    TextView messageView;
+    protected static OnEventListener listener;
+    final View.OnClickListener proceedInstallation = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
 
+
+            // close the current dialog and proceed to the installation setup
+            mDialog.cancel();
+
+            InstallationDialogFragment dialogFragment = new InstallationDialogFragment();
+            //if (listener == null) {
+//               // listener.onSuccess();
+            //}
+            dialogFragment.setOnInstallListener(listener);
+            dialogFragment.show(getFragmentManager(), "do_install");
+
+//            new InstallProgressDialogFragment()
+//                    .show(getFragmentManager(), "do_install");
+
+
+        }
+    };
     final View.OnClickListener rejectInstallation = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -35,21 +53,13 @@ public class NotifyInstalltionDialogFragment extends SherlockDialogFragment {
 
         }
     };
+    Dialog mDialog;
+    TextView titleView;
+    TextView messageView;
 
-    final View.OnClickListener proceedInstallation = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-
-
-            // close the current dialog and proceed to the installation setup
-            mDialog.cancel();
-
-            new InstallProgressDialogFragment()
-                    .show(getFragmentManager(), "do_install");
-
-
-        }
-    };
+    public void setOnEventListener(OnEventListener onEventListener) {
+        listener = onEventListener;
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
