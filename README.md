@@ -9,6 +9,8 @@ DroidPHP is an open-source Web Server for Android devices, allowing you to run P
 Please see the [issues](https://github.com/droidphp/droidphp/issues) section to
 report any bugs or feature requests and to see the list of known issues.
 
+Please see the [wiki](https://github.com/droidphp/droidphp/wiki) section for help. 
+
 ## License
 
 * [Apache Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
