@@ -78,7 +78,7 @@
         </Preference>
         <Preference
                 android:key="app_version"
-                android:summary="1.2.0"
+                android:summary="1.5.0"
                 android:title="Version"/>
     </PreferenceCategory>
 </PreferenceScreen>
