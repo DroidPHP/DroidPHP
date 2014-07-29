@@ -19,9 +19,7 @@ import java.util.zip.ZipInputStream;
 
 public class ZipExtractDialogFragment extends SherlockDialogFragment {
 
-
     protected static OnEventListener listener;
-
 
     private static String repoFilename;
     private static String repoExtract;
@@ -89,7 +87,7 @@ public class ZipExtractDialogFragment extends SherlockDialogFragment {
             createDirectory("");
 
             try {
-                if (repoFilename.equals("") || repoFilename == null) {
+                if (repoFilename == null || repoFilename.equals("")) {
                     zipInputStream = new ZipInputStream(
                             getSherlockActivity().getAssets().open("data.zip")
                     );
