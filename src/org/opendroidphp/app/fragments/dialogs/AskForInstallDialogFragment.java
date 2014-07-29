@@ -23,8 +23,10 @@ public class AskForInstallDialogFragment extends SherlockDialogFragment {
             // close the current dialog and proceed to the installation setup
             mDialog.cancel();
 
-            InstallationDialogFragment dialogFragment = new InstallationDialogFragment();
+            ZipExtractDialogFragment dialogFragment = new ZipExtractDialogFragment();
             dialogFragment.setOnInstallListener(listener);
+            String repoInstallUri = getSherlockActivity().getApplicationInfo().dataDir + "/";
+            dialogFragment.setRepository(null, repoInstallUri);
             dialogFragment.show(getFragmentManager(), "do_install");
 
 
