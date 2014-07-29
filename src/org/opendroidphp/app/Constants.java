@@ -5,10 +5,10 @@ import android.os.Environment;
 public class Constants {
 
     public static final String EXTERNAL_STORAGE = Environment.getExternalStorageDirectory().getPath();
-
     public static final String SERVER_LOCATION = EXTERNAL_STORAGE + "/htdocs";
     public static final String PROJECT_LOCATION = EXTERNAL_STORAGE + "/droidphp";
     public static final String UPDATE_FROM_EXTERNAL_REPOSITORY = EXTERNAL_STORAGE + "/droidphp/repositroy/update.zip";
+    public static final String REPOSITORY_URL = "http://localhost:8080/extension.json";
     public static final String INTERNAL_LOCATION = "/data/data/org.opendroidphp";
     public static final String LIGHTTPD_SBIN_LOCATION = INTERNAL_LOCATION + "/components/lighttpd/sbin/lighttpd";
     public static final String LIGTTTPD_CONF_LOCATION = INTERNAL_LOCATION + "/components/lighttpd/conf/lighttpd.conf";

@@ -44,6 +44,9 @@
         <activity
             android:name="org.opendroidphp.app.SQLShellActivity"
             android:label="SQL Shell" />
+        <activity
+            android:name="org.opendroidphp.app.ExtensionActivity"
+            android:label="Extensions" />
 
         <service
             android:name="org.opendroidphp.app.services.ServerService"

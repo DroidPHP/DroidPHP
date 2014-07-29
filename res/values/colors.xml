@@ -16,4 +16,12 @@
     <color name="blue">#009</color>
     <color name="white">#FFF</color>
     <color name="black">#000</color>
+    <color name="background">#F9F9F9</color>
+    <color name="background_selected">#E8E8E8</color>
+
+    <color name="text">#1E1E1E</color>
+    <color name="text_light">#AEAEAE</color>
+    <color name="text_icon">#A8A8A8</color>
+    <color name="text_recent">#3797C7</color>
+    <color name="text_description">#666666</color>
 </resources>
