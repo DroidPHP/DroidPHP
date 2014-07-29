@@ -21,6 +21,7 @@ import org.opendroidphp.app.fragments.dialogs.ExtensionDownloaderDialogFragment;
 import org.opendroidphp.app.fragments.dialogs.OnEventListener;
 import org.opendroidphp.app.fragments.dialogs.ZipExtractDialogFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import eu.chainfire.libsuperuser.Shell;
@@ -53,20 +54,8 @@ public class ExtensionActivity extends SherlockFragmentActivity {
                     public void onSuccess() {
 
                         if (!extension.getFileName().endsWith(".zip")) {
-                            // is it native binary ?
-                            String shell = extension.getShellScript();
-                            if (shell.equals("")) {
-                                return;
-                            }
-                            String run[] = null;
-                            if (shell.contains("\n")) {
-                                run = shell.split("\n");
-                            }
-                            if (run != null) {
-                                Shell.SH.run(run);
-                            } else {
-                                Shell.SH.run(shell);
-                            }
+                            executeShellScripts(extension, true);
+
 
                         } else {
                             ZipExtractDialogFragment dialogFragment = new ZipExtractDialogFragment();
@@ -77,22 +66,7 @@ public class ExtensionActivity extends SherlockFragmentActivity {
                                 @Override
                                 public void onSuccess() {
                                     IcsToast.makeText(ExtensionActivity.this, "Repository " + extension.getName() + " installed", Toast.LENGTH_LONG).show();
-                                    String shellScript = extension.getShellScript();
-
-
-                                        if (shellScript.equals("")) {
-                                            return;
-                                        }
-                                        String run[] = null;
-                                        if (shellScript.contains("\n")) {
-                                            run = shellScript.split("\n");
-                                        }
-                                        if (run != null) {
-                                            Shell.SH.run(run);
-                                        } else {
-                                            Shell.SH.run(shellScript);
-                                        }
-
+                                    executeShellScripts(extension, false);
                                 }
 
                                 @Override
@@ -115,6 +89,35 @@ public class ExtensionActivity extends SherlockFragmentActivity {
             }
         });
 
+    }
+
+    private void executeShellScripts(Extension extension, boolean isNative) {
+
+        String shell = extension.getShellScript();
+
+        final List<String> run = new ArrayList<String>();
+        if (shell.contains("\n")) {
+            for (String script : shell.split("\n")) {
+                run.add(script);
+            }
+        } else {
+            run.add(shell);
+        }
+        if (isNative) {
+            run.add(String.format("%s cp %s %s",
+                            Constants.BUSYBOX_SBIN_LOCATION,
+                            Constants.PROJECT_LOCATION + "/repo/" + extension.getFileName(),
+                            extension.getInstallPath())
+            );
+        }
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Shell.SH.run(run);
+            }
+        }).start();
     }
 
     public class ExtensionAdapter extends ArrayAdapter<Extension> {
@@ -156,11 +159,11 @@ public class ExtensionActivity extends SherlockFragmentActivity {
             }
 
             Extension c = itemList.get(position);
-            TextView extensionName = (TextView) v.findViewById(R.id.extension_name);
-            extensionName.setText(c.getName());
+            TextView text = (TextView) v.findViewById(R.id.extension_name);
+            text.setText(c.getName());
 
-            TextView extensionSummery = (TextView) v.findViewById(R.id.extension_summery);
-            extensionSummery.setText(c.getSummery());
+            TextView text1 = (TextView) v.findViewById(R.id.extension_summery);
+            text1.setText(c.getSummery());
 
             return v;
         }
