@@ -4,14 +4,12 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockDialogFragment;
 
 import org.opendroidphp.R;
-import org.opendroidphp.app.Constants;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,17 +17,23 @@ import java.io.FileOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-public class InstallationDialogFragment extends SherlockDialogFragment {
+public class ZipExtractDialogFragment extends SherlockDialogFragment {
 
 
     protected static OnEventListener listener;
 
-    private static String NATIVE_DIRECTORY;
-    private static String EXTERNAL_REPOSITORY;
+
+    private static String repoFilename;
+    private static String repoExtract;
     private Dialog mDialog;
     private TextView titleView;
     private TextView messageView;
     private InstallerTask mTask;
+
+    public void setRepository(String repoFilename, String repoExtract) {
+        this.repoFilename = repoFilename;
+        this.repoExtract = repoExtract;
+    }
 
     public void setOnInstallListener(OnEventListener onInstallListener) {
 
@@ -46,15 +50,6 @@ public class InstallationDialogFragment extends SherlockDialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-
-        try {
-            NATIVE_DIRECTORY = getSherlockActivity().getApplicationInfo().dataDir + "/";
-        } catch (NullPointerException e) {
-
-        }
-
-        EXTERNAL_REPOSITORY = Environment.
-                getExternalStorageDirectory().getPath() + "/" + Constants.UPDATE_FROM_EXTERNAL_REPOSITORY;
 
         LayoutInflater inflater = getSherlockActivity().getLayoutInflater();
 
@@ -86,7 +81,6 @@ public class InstallationDialogFragment extends SherlockDialogFragment {
 
     private final class InstallerTask extends AsyncTask<Void, String, Void> {
 
-
         @Override
         protected Void doInBackground(Void... params) {
             Boolean isInstalled = true;
@@ -95,22 +89,17 @@ public class InstallationDialogFragment extends SherlockDialogFragment {
             createDirectory("");
 
             try {
-                //update from external repository (from `/mnt/sdcard/droidphp/repository/update.zip`)
-
-                if (new File(EXTERNAL_REPOSITORY).exists()) {
-
-                    zipInputStream = new ZipInputStream(
-                            new FileInputStream(EXTERNAL_REPOSITORY)
-                    );
-
-                } else {
-                    //use internal repository
+                if (repoFilename.equals("") || repoFilename == null) {
                     zipInputStream = new ZipInputStream(
                             getSherlockActivity().getAssets().open("data.zip")
                     );
+                } else if (new File(repoFilename).exists()) {
+                    zipInputStream = new ZipInputStream(
+                            new FileInputStream(repoFilename)
+                    );
                 }
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
             ZipEntry zipEntry = null;
 
@@ -127,7 +116,7 @@ public class InstallationDialogFragment extends SherlockDialogFragment {
                         FileOutputStream fout = null;
 
                         fout = new FileOutputStream(
-                                NATIVE_DIRECTORY + zipEntry.getName()
+                                repoExtract + zipEntry.getName()
                         );
                         publishProgress(zipEntry.getName());
 
@@ -156,7 +145,6 @@ public class InstallationDialogFragment extends SherlockDialogFragment {
                 publishProgress("ERROR");
             }
 
-
             if (getDialog() != null && getDialog().isShowing()) {
                 dismiss();
             }
@@ -175,7 +163,6 @@ public class InstallationDialogFragment extends SherlockDialogFragment {
                         listener.onSuccess();
                     }
                 }
-
                 if (values[0].equals("ERROR")) {
 
                     if (listener != null) {
@@ -196,9 +183,7 @@ public class InstallationDialogFragment extends SherlockDialogFragment {
          * @param dirName
          */
         protected void createDirectory(String dirName) {
-
-            File file = new File(NATIVE_DIRECTORY + dirName);
-
+            File file = new File(repoExtract + dirName);
             if (!file.isDirectory()) file.mkdirs();
         }
     }
