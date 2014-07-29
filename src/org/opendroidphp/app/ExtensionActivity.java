@@ -156,11 +156,11 @@ public class ExtensionActivity extends SherlockFragmentActivity {
             }
 
             Extension c = itemList.get(position);
-            TextView text = (TextView) v.findViewById(R.id.extension_name);
-            text.setText(c.getName());
+            TextView extensionName = (TextView) v.findViewById(R.id.extension_name);
+            extensionName.setText(c.getName());
 
-            TextView text1 = (TextView) v.findViewById(R.id.extension_summery);
-            text1.setText(c.getSummery());
+            TextView extensionSummery = (TextView) v.findViewById(R.id.extension_summery);
+            extensionSummery.setText(c.getSummery());
 
             return v;
         }
