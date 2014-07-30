@@ -2,13 +2,11 @@ package org.opendroidphp.app.common.tasks;
 
 import android.os.Environment;
 
-import org.apache.commons.io.FileUtils;
 import org.opendroidphp.app.Constants;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import eu.chainfire.libsuperuser.Shell;
 
@@ -20,7 +18,6 @@ public class ConnectServer implements Runnable {
     protected final static String SERVER_DAEMON_NGINX = "nginx";
 
     protected static String EXTERNAL_DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/droidphp/";
-    protected String SERV_PORT_REGEX = "server.port.*";
     protected String baseShell;
     protected String basePort;
     protected String serverDaemon;
@@ -43,6 +40,9 @@ public class ConnectServer implements Runnable {
      */
 
     public ConnectServer setServerPort(String port) {
+        if (port == null || port.equals("")) {
+            port = "8080";
+        }
         basePort = port;
         return this;
     }
@@ -78,17 +78,20 @@ public class ConnectServer implements Runnable {
 
             checkFilesystem();
 
-            if (basePort != null) {
-                changeServerData(basePort);
-            }
-
         } catch (Exception e) {
 
             e.printStackTrace();
         }
 
         String daemon = serverDaemon.equals(SERVER_DAEMON_NGINX) ? "nginx" : "lighttpd";
-        command.add(Constants.INTERNAL_LOCATION + "/scripts/server-sh.sh ".concat(daemon));
+
+        String shellScript = String.format("%s /scripts/server-sh.sh %s %s",
+                Constants.INTERNAL_LOCATION,
+                daemon,
+                basePort
+        );
+
+        command.add(shellScript);
 
         String commands[] = new String[command.size()];
         int i = 0;
@@ -124,21 +127,6 @@ public class ConnectServer implements Runnable {
 
             File file = new File(fileUri);
             if (!file.exists()) file.mkdirs();
-        }
-    }
-
-    protected void changeServerData(String port) {
-
-        try {
-
-            File confFile = new File(EXTERNAL_DIRECTORY + "/conf/lighttpd.conf");
-
-            String sb = FileUtils.readFileToString(confFile, "UTF-8");
-            sb.replaceFirst(SERV_PORT_REGEX, String.format(Locale.ENGLISH, "server.port                              = %s", port));
-
-            FileUtils.writeStringToFile(confFile, sb, "UTF-8");
-        } catch (Exception e) {
-
         }
     }
 }
