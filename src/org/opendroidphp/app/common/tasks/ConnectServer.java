@@ -71,21 +71,12 @@ public class ConnectServer implements Runnable {
 
     protected void initialize() {
         List<String> command = new ArrayList<String>();
-
         command.add(CHANGE_PERMISSION.concat(Constants.INTERNAL_LOCATION + "/scripts/server-sh.sh"));
 
-        try {
-
-            checkFilesystem();
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-        }
-
+        checkFilesystem();
         String daemon = serverDaemon.equals(SERVER_DAEMON_NGINX) ? "nginx" : "lighttpd";
 
-        String shellScript = String.format("%s /scripts/server-sh.sh %s %s",
+        String shellScript = String.format("%s/scripts/server-sh.sh %s %s",
                 Constants.INTERNAL_LOCATION,
                 daemon,
                 basePort

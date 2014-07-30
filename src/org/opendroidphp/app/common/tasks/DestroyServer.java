@@ -26,7 +26,7 @@ public class DestroyServer implements Runnable {
 
     protected void initialize() {
 
-        String command[]  = new String[] {
+        String command[] = new String[]{
                 Constants.INTERNAL_LOCATION + "/scripts/shutdown-sh.sh"
         };
 
