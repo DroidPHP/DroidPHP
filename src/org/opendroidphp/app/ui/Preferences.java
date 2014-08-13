@@ -1,4 +1,4 @@
-package org.opendroidphp.app;
+package org.opendroidphp.app.ui;
 
 import android.os.Bundle;
 
@@ -12,7 +12,6 @@ public class Preferences extends SherlockPreferenceActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         addPreferencesFromResource(R.xml.preferences_default);
     }
 }
