@@ -7,4 +7,24 @@
 
     <integer name="num_cols">1</integer>
 
+    <dimen name="about_title_text_size">22.0sp</dimen>
+    <dimen name="about_version_text_size">12.0sp</dimen>
+    <dimen name="about_subtitle_text_size">14.0sp</dimen>
+    <dimen name="about_icon_title_margin">14.0dip</dimen>
+    <dimen name="about_title_subtitle_margin">6.0dip</dimen>
+    <dimen name="about_title_version_margin">6.0dip</dimen>
+    <dimen name="about_button_margin_left_right">45.0dip</dimen>
+    <dimen name="about_share_rate_margin">24.0dip</dimen>
+    <dimen name="about_copyright_text_size">10.0sp</dimen>
+    <dimen name="about_rights_privacy_margin">7.0dip</dimen>
+    <dimen name="about_copyright_margin_bottom">12.0dip</dimen>
+    <dimen name="about_version_bg_height_width">21.0dip</dimen>
+
+    <dimen name="common_text_size_large">18.0dip</dimen>
+    <dimen name="common_text_size_middle">15.0dip</dimen>
+    <dimen name="common_text_size_middle_2">14.0dip</dimen>
+    <dimen name="common_text_size_small">13.0dip</dimen>
+    <dimen name="common_text_size_small_2">10.0dip</dimen>
+    <dimen name="common_text_size_small_3">12.0dip</dimen>
+
 </resources>

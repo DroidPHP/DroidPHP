@@ -24,4 +24,43 @@
     <color name="text_icon">#A8A8A8</color>
     <color name="text_recent">#3797C7</color>
     <color name="text_description">#666666</color>
+
+    <color name="list_item_title">#fff</color>
+    <color name="list_background">#303030</color>
+    <color name="list_background_pressed">#992416</color>
+    <color name="list_divider">#272727</color>
+    <color name="list_row_hover_start_color">#ebeef0</color>
+    <color name="list_row_hover_end_color">#ebeef0</color>
+    <color name="list_row_start_color">#ffffff</color>
+    <color name="list_row_end_color">#ffffff</color>
+
+    <color name="counter_text_bg">#626262</color>
+    <color name="counter_text_color">#c5c4c4</color>
+
+    <color name="toolbox_balance_title">#ff737373</color>
+    <color name="common_white">#ffffffff</color>
+    <color name="common_white_2">#ffeaeaea</color>
+    <color name="common_white_shadow">#ff414141</color>
+    <color name="common_white_disabled">#ffe7e7e7</color>
+    <color name="common_gray_on_blue">#ffadbad5</color>
+    <color name="common_yellow_on_blue">#ffff764b</color>
+    <color name="common_deep_gray_on_blue">#ff848c9f</color>
+    <color name="common_dark_pure">#ff000000</color>
+    <color name="common_dark">#ff3d5562</color>
+    <color name="common_dark_shadow">#ffdedede</color>
+    <color name="common_dark_disabled">#ff9aa7af</color>
+    <color name="category_header_text">#ffadbad5</color>
+    <color name="common_grey">#ff748199</color>
+    <color name="common_grey_disabled">#ffaabbc4</color>
+    <color name="common_red">#ffe62f2f</color>
+    <color name="common_yellow">#fff1930d</color>
+    <color name="common_green">#ff3fbd74</color>
+    <color name="common_blue">#ff59c5f9</color>
+    <color name="common_half_transparent">#b0000000</color>
+
+    <color name="about_title_text_color">#ffffffff</color>
+    <color name="about_version_text_color">#ffffffff</color>
+    <item type="color" name="about_subtitle_text_color">@color/common_deep_gray_on_blue</item>
+    <item type="color" name="about_mail_text_color">@color/common_deep_gray_on_blue</item>
+    <color name="about_version_bg_color">#ff3bb9fc</color>
 </resources>

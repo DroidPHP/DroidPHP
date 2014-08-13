@@ -7,17 +7,11 @@
         android:title="@string/web_admin"
         android:titleCondensed="@string/web_admin" />
     <item
-        android:id="@+id/extension"
-        android:icon="@drawable/cloud"
-        android:showAsAction="ifRoom|withText"
-        android:title="@string/extension"
-        android:titleCondensed="@string/web_admin" />
-    <item
         android:id="@+id/sql_admin"
         android:icon="@drawable/memory"
         android:showAsAction="ifRoom|withText"
-        android:title="@string/sql_admin"
-        android:titleCondensed="@string/web_admin" />
+        android:title="@string/php_my_admin"
+        android:titleCondensed="@string/php_my_admin" />
 
     <item
         android:id="@+id/settings"
@@ -25,10 +19,4 @@
         android:showAsAction="ifRoom|withText"
         android:title="@string/settings"
         android:titleCondensed="@string/settings" />
-    <item
-        android:id="@+id/about"
-        android:icon="@drawable/about"
-        android:showAsAction="ifRoom|withText"
-        android:title="@string/about"
-        android:titleCondensed="@string/about" />
 </menu>
