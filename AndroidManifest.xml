@@ -8,7 +8,7 @@
     <uses-sdk
         android:maxSdkVersion="19"
         android:minSdkVersion="7"
-        android:targetSdkVersion="17"></uses-sdk>
+        android:targetSdkVersion="19"></uses-sdk>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
