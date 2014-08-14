@@ -76,9 +76,5 @@
                 android:action="android.intent.action.VIEW"
                 android:data="http://github.com/droidphp" />
         </Preference>
-        <Preference
-            android:key="app_version"
-            android:summary="1.6.0"
-            android:title="Version" />
     </PreferenceCategory>
 </PreferenceScreen>
