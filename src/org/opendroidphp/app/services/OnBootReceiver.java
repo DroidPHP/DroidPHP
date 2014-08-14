@@ -11,7 +11,6 @@ public class OnBootReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
-
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
             if (preferences.getBoolean("enable_server_on_boot", false)) {
@@ -19,6 +18,10 @@ public class OnBootReceiver extends BroadcastReceiver {
                 Intent i = new Intent(context, ServerService.class);
                 context.startService(i);
             }
+        }
+
+        if (intent.getAction().equals(Intent.ACTION_PACKAGE_REMOVED)) {
+            BackgroundIntentService.performAction(context, BackgroundIntentService.ACTION_PACKAGE_REMOVED);
         }
     }
 }
