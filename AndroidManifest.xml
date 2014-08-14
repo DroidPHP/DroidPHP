@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.opendroidphp"
-    android:versionCode="16000"
-    android:versionName="1.6.0">
+    android:versionCode="17000"
+    android:versionName="1.7.0">
 
     <uses-sdk
         android:maxSdkVersion="19"
@@ -19,14 +18,14 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
-        android:name="org.opendroidphp.app.BaseApplication"
+        android:name=".app.AppController"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.DroidPHP">
 
         <activity
-            android:name="org.opendroidphp.app.HomeActivity"
+            android:name=".app.ui.ActivityConsole"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name">
             <intent-filter>
@@ -38,15 +37,9 @@
         </activity>
 
         <activity
-            android:name="org.opendroidphp.app.Preferences"
+            android:name=".app.ui.SettingActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/settings" />
-        <activity
-            android:name="org.opendroidphp.app.SQLShellActivity"
-            android:label="SQL Shell" />
-        <activity
-            android:name="org.opendroidphp.app.ExtensionActivity"
-            android:label="Extensions" />
 
         <service
             android:name="org.opendroidphp.app.services.ServerService"
@@ -56,6 +49,7 @@
         <receiver android:name="org.opendroidphp.app.services.OnBootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
 
                 <category android:name="android.intent.category.HOME" />
             </intent-filter>
