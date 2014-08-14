@@ -42,15 +42,12 @@ public class NavDrawerListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-
             LayoutInflater mInflater = (LayoutInflater)
                     context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-
             convertView = mInflater.inflate(R.layout.drawer_list_item, null);
         }
 
         TextView txtTitle = (TextView) convertView.findViewById(R.id.title);
-        //TextView txtCount = (TextView) convertView.findViewById(R.id.counter);
 
         if (navDrawerItems.get(position).getIcon() != 0) {
             ImageView imgIcon = (ImageView) convertView.findViewById(R.id.icon);
@@ -58,7 +55,6 @@ public class NavDrawerListAdapter extends BaseAdapter {
         }
 
         txtTitle.setText(navDrawerItems.get(position).getTitle());
-
         return convertView;
     }
 
