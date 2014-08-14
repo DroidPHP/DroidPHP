@@ -3,16 +3,16 @@
     <item>
         <shape android:shape="rectangle">
             <stroke
-                    android:width="1.0dip"
-                    android:color="#ffcccccc"/>
+                android:width="1.0dip"
+                android:color="#ffcccccc" />
         </shape>
     </item>
     <item android:top="1.0dip">
         <shape android:shape="rectangle">
             <stroke
-                    android:width="1.0dip"
-                    android:color="#ffffffff"/>
-            <solid android:color="#ffffffff"/>
+                android:width="1.0dip"
+                android:color="#ffffffff" />
+            <solid android:color="#ffffffff" />
         </shape>
     </item>
 </layer-list>

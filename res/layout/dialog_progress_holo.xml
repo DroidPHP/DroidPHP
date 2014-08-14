@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/progress_layout_root"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/progress_layout_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
 
     <TextView
-            android:textSize="24.0sp"
-            android:textColor="#ff6b9a3e"
-            android:id="@+id/title"
-            android:padding="10.0dip"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"/>
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10.0dip"
+        android:textColor="#ff6b9a3e"
+        android:textSize="24.0sp" />
 
     <View
-            android:background="#ff6b9a3e"
-            android:layout_width="fill_parent"
-            android:layout_height="2.0dip"/>
+        android:layout_width="fill_parent"
+        android:layout_height="2.0dip"
+        android:background="#ff6b9a3e" />
 
     <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <ProgressBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10.0dip"
-                android:max="10000"
-                android:indeterminate="true"
-                android:indeterminateDrawable="@drawable/spinner"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10.0dip"
+            android:indeterminate="true"
+            android:indeterminateDrawable="@drawable/spinner"
+            android:max="10000" />
 
         <TextView
-                android:textSize="14.0sp"
-                android:textColor="#ff000000"
-                android:ellipsize="end"
-                android:layout_gravity="center_vertical"
-                android:id="@+id/message"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="2"/>
+            android:id="@+id/message"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="#ff000000"
+            android:textSize="14.0sp" />
     </LinearLayout>
 </LinearLayout>

@@ -41,7 +41,7 @@
         <item name="textAppearance">@style/TextAppearance</item>
     </style>
 
-    <style name="Widget"/>
+    <style name="Widget" />
 
 
     <style name="Theme.DroidPHP" parent="@style/Theme.Sherlock.Light">
@@ -85,6 +85,7 @@
         <item name="android:paddingBottom">10dp</item>
         <item name="android:background">@drawable/list_item_background</item>
     </style>
+
     <style name="TitleText">
         <item name="android:textSize">17sp</item>
         <item name="android:paddingBottom">2dp</item>

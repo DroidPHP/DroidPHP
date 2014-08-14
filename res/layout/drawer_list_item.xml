@@ -1,43 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="48dp" 
-    android:background="@drawable/list_selector">
+    android:layout_height="48dp"
+    android:background="@drawable/list_selector"
+    android:padding="8dp">
 
     <ImageView
         android:id="@+id/icon"
         android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:contentDescription="@string/desc_list_item_icon"
-        android:src="@drawable/ic_launcher"
-        android:layout_centerVertical="true" />
+        android:src="@drawable/ic_launcher" />
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
         android:layout_toRightOf="@id/icon"
-        android:minHeight="12dp"
-        android:textColor="@color/list_item_title"
-        android:gravity="center_vertical"
-        android:paddingRight="40dp"/>
-    
-    <!--
-    android:layout_toRightOf="@id/icon"
-    android:minHeight="?android:attr/listPreferredItemHeightSmall"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall"
-        -->
-        
-    <!--TextView android:id="@+id/counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/counter_bg"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="8dp"
-        android:textColor="@color/counter_text_color"/-->
+        android:gravity="center_vertical"
+        android:textSize="17dp"
+        android:minHeight="20dp"
+        android:paddingRight="40dp"
+        android:textStyle="bold"
+        android:textColor="#ff6b9a3e" />
 
 </RelativeLayout>

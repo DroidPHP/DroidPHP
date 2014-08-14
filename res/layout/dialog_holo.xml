@@ -1,80 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:background="#ffffffff"
-        android:layout_height="fill_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffffff"
+    android:orientation="vertical">
 
     <TextView
-            android:textSize="24.0sp"
-            android:textColor="#ff6b9a3e"
-            android:gravity="center_vertical"
-            android:id="@+id/title"
-            android:padding="10.0dip"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_launcher"/>
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_launcher"
+        android:gravity="center_vertical"
+        android:padding="10.0dip"
+        android:textColor="#ff6b9a3e"
+        android:textSize="24.0sp" />
 
     <View
-            android:background="#ff6b9a3e"
-            android:layout_width="fill_parent"
-            android:layout_height="2.0dip"/>
+        android:layout_width="fill_parent"
+        android:layout_height="2.0dip"
+        android:background="#ff6b9a3e" />
 
     <ScrollView
-            android:clipToPadding="false"
-            android:layout_width="fill_parent"
-            android:layout_height="0.0dip"
-            android:layout_weight="1.0">
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1.0"
+        android:clipToPadding="false">
 
         <TextView
-                android:textColor="#ff000000"
-                android:gravity="left"
-                android:autoLink="web"
-                android:id="@+id/message"
-                android:padding="10.0dip"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"/>
+            android:id="@+id/message"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:gravity="left"
+            android:padding="10.0dip"
+            android:textColor="#ff000000" />
     </ScrollView>
 
     <View
-            android:background="#ffdddddd"
-            android:layout_width="fill_parent"
-            android:layout_height="1.0dip"/>
+        android:layout_width="fill_parent"
+        android:layout_height="1.0dip"
+        android:background="#ffdddddd" />
 
     <View
-            android:background="#ffdddddd"
-            android:layout_width="fill_parent"
-            android:layout_height="1.0dip"/>
+        android:layout_width="fill_parent"
+        android:layout_height="1.0dip"
+        android:background="#ffdddddd" />
 
     <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <Button
-                android:textSize="14.0sp"
-                android:textColor="#ff000000"
-                android:id="@+id/positive"
-                android:background="@drawable/btn_dialog"
-                android:layout_width="0.0dip"
-                android:layout_height="wrap_content"
-                android:minHeight="48.0dip"
-                android:layout_weight="1.0"/>
+            android:id="@+id/positive"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:background="@drawable/btn_dialog"
+            android:minHeight="48.0dip"
+            android:textColor="#ff000000"
+            android:textSize="14.0sp" />
 
         <View
-                android:background="#ffdddddd"
-                android:layout_width="1.0dip"
-                android:layout_height="fill_parent"/>
+            android:layout_width="1.0dip"
+            android:layout_height="fill_parent"
+            android:background="#ffdddddd" />
 
         <Button
-                android:textSize="14.0sp"
-                android:textColor="#ff000000"
-                android:id="@+id/negative"
-                android:background="@drawable/btn_dialog"
-                android:layout_width="0.0dip"
-                android:layout_height="wrap_content"
-                android:minHeight="48.0dip"
-                android:layout_weight="1.0"/>
+            android:id="@+id/negative"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:background="@drawable/btn_dialog"
+            android:minHeight="48.0dip"
+            android:textColor="#ff000000"
+            android:textSize="14.0sp" />
     </LinearLayout>
 </LinearLayout>

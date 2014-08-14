@@ -94,23 +94,22 @@
 
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
-        <item >Home</item>
-        <item >MySQL Shell</item>
-        <item >Extension</item>
-        <item >GitHub</item>
-        <item >About</item>
+        <item>Home</item>
+        <item>MySQL Shell</item>
+        <item>Extension</item>
+        <!--item>GitHub</item-->
+        <item>About</item>
     </string-array>
 
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
-    <!--array name="nav_drawer_icons">
-        <item>@drawable/ic_home</item>
-        <item>@drawable/ic_people</item>
-        <item>@drawable/ic_photos</item>
-        <item>@drawable/ic_communities</item>
-        <item>@drawable/ic_pages</item>
-        <item>@drawable/ic_whats_hot</item>
-    </array-->
+    <array name="nav_drawer_icons">
+        <item>@drawable/web_site</item>
+        <item>@drawable/memory</item>
+        <item>@drawable/cloud</item>
+        <!--item>@drawable/ic_action_github</item-->
+        <item>@drawable/about</item>
+    </array>
 
     <!-- Content Description -->
 

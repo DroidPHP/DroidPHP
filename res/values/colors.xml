@@ -60,7 +60,7 @@
 
     <color name="about_title_text_color">#ffffffff</color>
     <color name="about_version_text_color">#ffffffff</color>
-    <item type="color" name="about_subtitle_text_color">@color/common_deep_gray_on_blue</item>
-    <item type="color" name="about_mail_text_color">@color/common_deep_gray_on_blue</item>
+    <item name="about_subtitle_text_color" type="color">@color/common_deep_gray_on_blue</item>
+    <item name="about_mail_text_color" type="color">@color/common_deep_gray_on_blue</item>
     <color name="about_version_bg_color">#ff3bb9fc</color>
 </resources>

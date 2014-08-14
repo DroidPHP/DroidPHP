@@ -1,121 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main_container"
     android:layout_width="wrap_content"
     android:layout_height="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical">
 
     <ScrollView
-        android:background="#ffdedede"
         android:layout_width="fill_parent"
         android:layout_height="0.0dip"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:background="#ffdedede">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:id="@+id/sql_admin"
-                android:background="#ffffffff"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20.0dip"
+                android:layout_marginRight="20.0dip"
                 android:layout_marginTop="20.0dip"
-                android:layout_marginRight="20.0dip">
+                android:background="#ffffffff"
+                android:orientation="vertical">
 
                 <TextView
-                    android:textSize="25.0sp"
-                    android:textColor="#ff6b9a3e"
-                    android:background="@drawable/title_bg"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10.0dip"
-                    android:text="@string/sql_admin" />
+                    android:background="@drawable/title_bg"
+                    android:text="@string/sql_admin"
+                    android:textColor="#ff6b9a3e"
+                    android:textSize="25.0sp" />
 
                 <TextView
-                    android:textSize="14.0sp"
-                    android:textColor="#ffaaaaaa"
                     android:id="@+id/update_msg"
-                    android:paddingLeft="10.0dip"
-                    android:paddingRight="10.0dip"
-                    android:paddingBottom="10.0dip"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/shell_help" />
+                    android:paddingBottom="10.0dip"
+                    android:paddingLeft="10.0dip"
+                    android:paddingRight="10.0dip"
+                    android:text="@string/shell_help"
+                    android:textColor="#ffaaaaaa"
+                    android:textSize="14.0sp" />
 
                 <View
-                    android:background="#ffdddddd"
                     android:layout_width="fill_parent"
-                    android:layout_height="1.0dip" />
+                    android:layout_height="1.0dip"
+                    android:background="#ffdddddd" />
 
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
 
                     <EditText
                         android:id="@+id/command"
-                        android:textSize="18.0sp"
-                        android:paddingLeft="10.0dip"
-                        android:paddingTop="10.0dip"
-                        android:paddingRight="10.0dip"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Enter your command" />
+                        android:hint="Enter your command"
+                        android:paddingLeft="10.0dip"
+                        android:paddingRight="10.0dip"
+                        android:paddingTop="10.0dip"
+                        android:textSize="18.0sp" />
 
                     <View
-                        android:layout_gravity="right"
                         android:layout_width="15.0dip"
-                        android:layout_height="1.0dip" />
+                        android:layout_height="1.0dip"
+                        android:layout_gravity="right" />
 
                     <Button
-                        android:textSize="14.0sp"
-                        android:textColor="#ff6b9a3e"
-                        android:minHeight="48.0dip"
-                        android:background="@drawable/btn_dialog"
+                        android:id="@+id/run_cmd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/btn_dialog"
+                        android:minHeight="48.0dip"
                         android:text="Run"
-                        android:id="@+id/run_cmd" />
+                        android:textColor="#ff6b9a3e"
+                        android:textSize="14.0sp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/result_layout"
 
-                android:orientation="vertical"
-                android:background="#ffffffff"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20.0dip"
+                android:layout_marginRight="20.0dip"
                 android:layout_marginTop="20.0dip"
-                android:layout_marginRight="20.0dip">
+                android:background="#ffffffff"
+                android:orientation="vertical">
 
                 <TextView
-                    android:textSize="25.0sp"
-                    android:textColor="#ff6b9a3e"
-                    android:background="@drawable/title_bg"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10.0dip"
-                    android:text="@string/mysql_result" />
+                    android:background="@drawable/title_bg"
+                    android:text="@string/mysql_result"
+                    android:textColor="#ff6b9a3e"
+                    android:textSize="25.0sp" />
 
 
                 <TextView
-                    android:textSize="14.0sp"
-                    android:textColor="#ffaaaaaa"
                     android:id="@+id/shell_result"
-                    android:paddingLeft="10.0dip"
-                    android:paddingRight="10.0dip"
-                    android:paddingBottom="10.0dip"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="MYSQL Mointor shell result" />
+                    android:paddingBottom="10.0dip"
+                    android:paddingLeft="10.0dip"
+                    android:paddingRight="10.0dip"
+                    android:text="MYSQL Mointor shell result"
+                    android:textColor="#ffaaaaaa"
+                    android:textSize="14.0sp" />
 
             </LinearLayout>
 

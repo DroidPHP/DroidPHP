@@ -4,17 +4,17 @@
     <item>
         <shape android:shape="rectangle">
             <stroke
-                    android:width="3.0dip"
-                    android:color="#ff999999"/>
+                android:width="3.0dip"
+                android:color="#ff999999" />
         </shape>
     </item>
     <item android:bottom="3.0dip">
         <shape android:shape="rectangle">
             <stroke
-                    android:width="3.0dip"
-                    android:color="#ffffffff"/>
-            <padding android:bottom="10.0dip"/>
-            <solid android:color="#ffffffff"/>
+                android:width="3.0dip"
+                android:color="#ffffffff" />
+            <padding android:bottom="10.0dip" />
+            <solid android:color="#ffffffff" />
         </shape>
     </item>
 </layer-list>

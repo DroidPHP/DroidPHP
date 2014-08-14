@@ -1,53 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main_container"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <LinearLayout
+            android:id="@+id/message_container"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="20.0dip"
+            android:layout_marginRight="20.0dip"
+            android:layout_marginTop="20.0dip"
+            android:background="#ffffffff"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/message_container"
+            <TextView
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="20.0dip"
-                android:layout_marginRight="20.0dip"
-                android:layout_marginTop="20.0dip"
-                android:background="#ffffffff"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_margin="10.0dip"
+                android:background="@drawable/title_bg"
+                android:text="About DroidPHP"
+                android:textColor="#ff6b9a3e"
+                android:textSize="25.0sp" />
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10.0dip"
-                    android:background="@drawable/title_bg"
-                    android:text="About DroidPHP"
-                    android:textColor="#ff6b9a3e"
-                    android:textSize="25.0sp"/>
+            <TextView
+                android:id="@+id/update_msg"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10.0dip"
+                android:paddingLeft="10.0dip"
+                android:paddingRight="10.0dip"
+                android:text="@string/about_app"
+                android:textColor="#ffaaaaaa"
+                android:textSize="14.0sp" />
 
-                <TextView
-                    android:id="@+id/update_msg"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="10.0dip"
-                    android:paddingLeft="10.0dip"
-                    android:paddingRight="10.0dip"
-                    android:text="@string/about_app"
-                    android:textColor="#ffaaaaaa"
-                    android:textSize="14.0sp"/>
-
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1.0dip"
-                    android:background="#ffdddddd"/>
-
-            </LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip"
+                android:background="#ffdddddd" />
 
         </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
