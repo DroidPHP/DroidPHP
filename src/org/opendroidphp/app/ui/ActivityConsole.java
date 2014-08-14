@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -97,8 +98,12 @@ public class ActivityConsole extends SherlockFragmentActivity {
                 }
                 return true;
             case R.id.web_admin:
+                startActivity(new Intent(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://localhost:8080"))));
                 return true;
             case R.id.sql_admin:
+                startActivity(new Intent(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://localhost:10000"))));
                 return true;
             case R.id.settings:
                 startActivity(new Intent(getApplicationContext(), SettingActivity.class));
@@ -184,7 +189,7 @@ public class ActivityConsole extends SherlockFragmentActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             setTitle(navMenuTitles[position]);
-            AppController.toast(getApplicationContext(), "Position: " + position);
+            //AppController.toast(getApplicationContext(), "Position: " + position);
             initializeView(position);
             mDrawerLayout.closeDrawer(mDrawerList);
         }
