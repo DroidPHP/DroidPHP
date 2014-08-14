@@ -13,6 +13,7 @@ import com.actionbarsherlock.app.SherlockDialogFragment;
 
 import org.opendroidphp.R;
 
+@Deprecated
 public class AboutDialogFragment extends SherlockDialogFragment {
 
 
@@ -54,10 +55,7 @@ public class AboutDialogFragment extends SherlockDialogFragment {
                 mDialog.cancel();
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://github.com/droidphp"));
                 intent = Intent.createChooser(intent, "Choose browser");
-
-                if (intent != null) {
-                    startActivity(intent);
-                }
+                startActivity(intent);
             }
         });
 
