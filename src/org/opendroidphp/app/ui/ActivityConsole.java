@@ -1,55 +1,56 @@
 package org.opendroidphp.app.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.github.rtyley.android.sherlock.roboguice.activity.RoboSherlockFragmentActivity;
 import com.sherlock.navigationdrawer.compat.SherlockActionBarDrawerToggle;
 
 import org.opendroidphp.R;
+import org.opendroidphp.app.AppController;
 import org.opendroidphp.app.adapter.NavDrawerListAdapter;
 import org.opendroidphp.app.model.NavDrawerItem;
 
 import java.util.ArrayList;
 
-import roboguice.inject.ContentView;
-import roboguice.inject.InjectResource;
-import roboguice.inject.InjectView;
 
+public class ActivityConsole extends SherlockFragmentActivity {
 
-@ContentView(R.layout.activity_main)
-public class ActivityConsole extends RoboSherlockFragmentActivity {
-
-    @InjectView(R.id.drawer_layout)
     private DrawerLayout mDrawerLayout;
-    @InjectView(R.id.list_slidermenu)
     private ListView mDrawerList;
-    @InjectResource(R.array.nav_drawer_items)
+
     private String[] navMenuTitles;
+    private TypedArray navMenuIcons;
 
     private ActionBarHelper mActionBar;
     private SherlockActionBarDrawerToggle mDrawerToggle;
 
+    private SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        prepareView();
 
         mDrawerLayout.setDrawerListener(new RoboDrawerListener());
         ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<NavDrawerItem>();
 
+        //int i = 0;
         for (String menuTitle : navMenuTitles) {
+            //navDrawerItems.add(new NavDrawerItem(menuTitle, navMenuIcons.getResourceId(i++, -1)));
             navDrawerItems.add(new NavDrawerItem(menuTitle));
         }
         // setting the nav drawer list adapter
@@ -100,7 +101,7 @@ public class ActivityConsole extends RoboSherlockFragmentActivity {
             case R.id.sql_admin:
                 return true;
             case R.id.settings:
-                startActivity(new Intent(getApplicationContext(), Preferences.class));
+                startActivity(new Intent(getApplicationContext(), SettingActivity.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -112,15 +113,16 @@ public class ActivityConsole extends RoboSherlockFragmentActivity {
         mDrawerToggle.syncState();
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//
-////        if (getBoolean("enable_server_on_app_startup", false)) {
-////            startService(new Intent(this, ServerService.class));
-////        }
-//        //new ConnectionListenerTask().execute();
-//    }
+    protected void prepareView() {
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
+
+        navMenuTitles = getResources()
+                .getStringArray(R.array.nav_drawer_items);
+
+        navMenuIcons = getResources()
+                .obtainTypedArray(R.array.nav_drawer_icons);
+    }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -143,7 +145,7 @@ public class ActivityConsole extends RoboSherlockFragmentActivity {
             case 0:
                 return new HomeFragment();
             case 1:
-                return new MySqlFragment();
+                return new SQLShellFragment();
             case 2:
                 return new ExtensionFragment();
             case 3:
@@ -166,11 +168,10 @@ public class ActivityConsole extends RoboSherlockFragmentActivity {
             // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(fragmentCode, true);
             mDrawerList.setSelection(fragmentCode);
-//            setTitle(navMenuTitles[position]);
+            setTitle(navMenuTitles[fragmentCode]);
             mDrawerLayout.closeDrawer(mDrawerList);
         } else {
-            // error in creating fragment
-            Log.e("MainActivity", "Error in creating fragment");
+            AppController.toast(getApplicationContext(), "Error on inflating fragment");
         }
     }
 
@@ -182,9 +183,8 @@ public class ActivityConsole extends RoboSherlockFragmentActivity {
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            //mContent.setText(Shakespeare.DIALOGUE[position]);
-            //mActionBar.setTitle(Shakespeare.TITLES[position]);
-            Toast.makeText(getApplicationContext(), "Position: " + position, Toast.LENGTH_LONG).show();
+            setTitle(navMenuTitles[position]);
+            AppController.toast(getApplicationContext(), "Position: " + position);
             initializeView(position);
             mDrawerLayout.closeDrawer(mDrawerList);
         }

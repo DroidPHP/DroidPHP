@@ -6,7 +6,7 @@ import com.actionbarsherlock.app.SherlockPreferenceActivity;
 
 import org.opendroidphp.R;
 
-public class Preferences extends SherlockPreferenceActivity {
+public class SettingActivity extends SherlockPreferenceActivity {
 
     @SuppressWarnings("deprecation")
     @Override

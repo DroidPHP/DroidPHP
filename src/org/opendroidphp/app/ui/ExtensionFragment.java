@@ -93,49 +93,6 @@ public class ExtensionFragment extends SherlockFragment implements AdapterView.O
         );
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(extensionReq);
-
-//        new AsyncTask<Void, Void, Void>() {
-//            @Override
-//            protected Void doInBackground(Void... voids) {
-//
-//                String js = "[{\"repoName\":\"[ARM] PHP, NGINX, MYSQL\",\"fileName\":\"php_nginx_mysql.zip\",\"repoDescription\":\"\",\"shellScript\":\"\",\"downloadUrl\":\"http:\\/\\/localhost:8080\\/file.zip\",\"installPath\":\"\\/sdcard\\/droidphp\\/php_nginx\"},{\"repoName\":\"[ARM] droidvpn\",\"fileName\":\"droidvpn\",\"repoDescription\":\"droidvpn is a proxy server.........\",\"shellScript\":\"busybox chmod 777 \\/data\\/data\\/org.opendroidphp\\/components\\/droidvpn\\\\nbusybox echo \\\"hello world\\\" < \\/data\\/data\\/org.opendroidphp\\/components\\/hello.log\",\"downloadUrl\":\"http:\\/\\/localhost:8080\\/droidvpn\",\"installPath\":\"\\/data\\/data\\/org.opendroidphp\\/components\\/droidvpn\"}]";
-//                JSONArray json = null;
-//                try {
-//                    json = new JSONArray(js);
-//                } catch (Exception e) {
-//
-//                }
-//
-//                try {
-//                    for (int i = 0; i < json.length(); i++) {
-//
-//                        JSONObject obj = json.getJSONObject(i);
-//
-//                        ExtensionItem extensionItem = new ExtensionItem().
-//                                setName(obj.getString("repoName")).
-//                                setFileName(obj.getString("fileName")).
-//                                setSummery(obj.getString("repoDescription")).
-//                                setShellScript(obj.getString("shellScript")).
-//                                setInstallPath(obj.getString("installPath")).
-//                                setDownloadUrl(obj.getString("downloadUrl"));
-//
-//                        Log.e("task", obj.getString("repoName"));
-//
-//                        // adding to extension list
-//                        extensionItems.add(extensionItem);
-//                    }
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//                return null;
-//            }
-//
-//            @Override
-//            protected void onPostExecute(Void aVoid) {
-//                super.onPostExecute(aVoid);
-//                extensionAdapter.notifyDataSetChanged();
-//            }
-//        }.execute();
     }
 
     protected void prepareView(View view) {
@@ -201,7 +158,8 @@ public class ExtensionFragment extends SherlockFragment implements AdapterView.O
                         }
                     });
                     dialogFragment.show(getFragmentManager(), getClass().getSimpleName());
-                } else {}
+                } else {
+                }
             }
 
             @Override
