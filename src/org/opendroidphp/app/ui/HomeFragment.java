@@ -60,7 +60,7 @@ public class HomeFragment extends SherlockFragment {
         new ConnectionListenerTask().execute();
     }
 
-       @Override
+    @Override
     public void onStart() {
         super.onStart();
 
@@ -70,6 +70,7 @@ public class HomeFragment extends SherlockFragment {
         }
         new ConnectionListenerTask().execute();
     }
+
     protected void prepareView(View view) {
 
         serverSwitch = (Switch) view.findViewById(R.id.switch_lighttpd_php);

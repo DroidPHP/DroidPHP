@@ -13,7 +13,7 @@ import com.actionbarsherlock.app.SherlockDialogFragment;
 
 import org.opendroidphp.R;
 import org.opendroidphp.app.Constants;
-import org.opendroidphp.app.common.utils.Extension;
+import org.opendroidphp.app.model.ExtensionItem;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -26,13 +26,13 @@ import java.net.URL;
 public class ExtensionDownloaderDialogFragment extends SherlockDialogFragment {
 
     protected static OnEventListener listener;
-    protected static Extension mExtension;
+    protected static ExtensionItem mExtension;
     private Dialog mDialog;
     private TextView titleView;
     private TextView messageView;
     private DownloadTask mTask;
 
-    public void setExtension(Extension extension) {
+    public void setExtension(ExtensionItem extension) {
         mExtension = extension;
     }
 

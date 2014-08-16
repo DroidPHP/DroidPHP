@@ -21,7 +21,6 @@ import org.opendroidphp.R;
 import org.opendroidphp.app.AppController;
 import org.opendroidphp.app.Constants;
 import org.opendroidphp.app.adapter.ExtensionListAdapter;
-import org.opendroidphp.app.common.utils.Extension;
 import org.opendroidphp.app.fragments.dialogs.ExtensionDownloaderDialogFragment;
 import org.opendroidphp.app.fragments.dialogs.OnEventListener;
 import org.opendroidphp.app.fragments.dialogs.ZipExtractDialogFragment;
@@ -102,7 +101,7 @@ public class ExtensionFragment extends SherlockFragment implements AdapterView.O
         mExtensionList.setOnItemClickListener(this);
     }
 
-    private void executeShellScripts(Extension extension, boolean isNative) {
+    private void executeShellScripts(ExtensionItem extension) {
 
         String shell = extension.getShellScript();
 
@@ -112,15 +111,6 @@ public class ExtensionFragment extends SherlockFragment implements AdapterView.O
         } else {
             run.add(shell);
         }
-        if (isNative) {
-            run.add(String.format("%s cp %s %s",
-                            Constants.BUSYBOX_SBIN_LOCATION,
-                            Constants.PROJECT_LOCATION + "/repo/" + extension.getFileName(),
-                            extension.getInstallPath())
-            );
-        }
-
-
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -132,7 +122,7 @@ public class ExtensionFragment extends SherlockFragment implements AdapterView.O
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-        final Extension extension = (Extension) adapterView.getItemAtPosition(i);
+        final ExtensionItem extension = (ExtensionItem) adapterView.getItemAtPosition(i);
         ExtensionDownloaderDialogFragment downloaderDialogFragment = new ExtensionDownloaderDialogFragment();
         downloaderDialogFragment.setOnInstallListener(new OnEventListener() {
             @Override
@@ -149,7 +139,7 @@ public class ExtensionFragment extends SherlockFragment implements AdapterView.O
                             AppController.
                                     toast(getSherlockActivity(), MessageFormat.
                                             format("Repository {0} installed", extension.getName()));
-                            //executeShellScripts(extension, false);
+                            executeShellScripts(extension);
                         }
 
                         @Override
