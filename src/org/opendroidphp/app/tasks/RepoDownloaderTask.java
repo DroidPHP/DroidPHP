@@ -15,7 +15,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class RepoDownloaderTask extends ProgressDialogTask {
+public class RepoDownloaderTask extends ProgressDialogTask<String, String, String> {
 
     public static final String DOWNLOAD_COMPLETED = "org.opendroidphp.package.DOWNLOADED";
     public static final String DOWNLOAD_ERROR = "org.opendroidphp.package.ERROR";
@@ -61,7 +61,7 @@ public class RepoDownloaderTask extends ProgressDialogTask {
         HttpURLConnection connection = null;
 
         try {
-            URL url = new URL(repository.getRepositoryUrl());
+            URL url = new URL(repository.getUrl());
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
 
@@ -82,7 +82,7 @@ public class RepoDownloaderTask extends ProgressDialogTask {
 
             if (!repo.exists()) repo.mkdirs();
 
-            String repoFilename = repo.getPath() + "/" + FilenameUtils.getFilename(repository.getRepositoryUrl());
+            String repoFilename = repo.getPath() + "/" + FilenameUtils.getFilename(repository.getUrl());
 
             File fileName = new File(repoFilename);
             if (fileName.exists())
