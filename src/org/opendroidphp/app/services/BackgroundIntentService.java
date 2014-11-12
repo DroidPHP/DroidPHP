@@ -34,7 +34,6 @@ public class BackgroundIntentService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         String action = intent.getAction();
         if ((action == null) || (action.equals(""))) return;
-
         if (action.equals(ACTION_BOOT_COMPLETE)) {
             onBootComplete();
         }
