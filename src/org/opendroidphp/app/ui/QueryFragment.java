@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
@@ -18,7 +17,6 @@ import org.apache.commons.io.IOUtils;
 import org.opendroidphp.R;
 import org.opendroidphp.app.AppController;
 import org.opendroidphp.app.Constants;
-import org.opendroidphp.app.common.utils.ShellOutputFormatter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,13 +24,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
-public class SQLShellFragment extends SherlockFragment implements View.OnClickListener {
+public class QueryFragment extends SherlockFragment implements View.OnClickListener {
 
     private static InputStream stdout;
     private static OutputStream stdin;
-    private Button mRunCommand;
-    private TextView mResult;
-    private EditText mCommand;
+    private Button mBtnQuery;
+    private EditText mQuery;
     private Process process;
 
     @Override
@@ -41,7 +38,8 @@ public class SQLShellFragment extends SherlockFragment implements View.OnClickLi
         View view = inflater.inflate(R.layout.fragment_mysql, container, false);
         prepareView(view);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getSherlockActivity());
+        SharedPreferences preferences = PreferenceManager.
+                getDefaultSharedPreferences(getSherlockActivity());
 
         final String username = preferences.getString("mysql_username", "root");
         final String password = preferences.getString("mysql_password", "");
@@ -52,18 +50,14 @@ public class SQLShellFragment extends SherlockFragment implements View.OnClickLi
                 initializeShell(username, password);
             }
         }).start();
-
         new AsyncCommandTask().execute();
-
         return view;
     }
 
     protected void prepareView(View view) {
-        mRunCommand = (Button) view.findViewById(R.id.run_cmd);
-        mResult = (TextView) view.findViewById(R.id.shell_result);
-        mCommand = (EditText) view.findViewById(R.id.command);
-
-        mRunCommand.setOnClickListener(this);
+        mQuery = (EditText) view.findViewById(R.id.create_mysql_query);
+        mBtnQuery = (Button) view.findViewById(R.id.btn_execute_query);
+        mBtnQuery.setOnClickListener(this);
     }
 
     protected Process initializeShell(final String username, final String password) {
@@ -80,7 +74,6 @@ public class SQLShellFragment extends SherlockFragment implements View.OnClickLi
         } catch (IOException e) {
             e.printStackTrace();
             AppController.toast(getSherlockActivity(), "Unable to run sql server");
-            // process.destroy();
         }
         return process;
     }
@@ -88,7 +81,7 @@ public class SQLShellFragment extends SherlockFragment implements View.OnClickLi
     @Override
     public void onClick(View view) {
         if (stdin == null || process == null) return;
-        String command = mCommand.getText().toString();
+        String command = mQuery.getText().toString();
         try {
             stdin.write((command + "\r\n").getBytes());
             stdin.flush();
@@ -97,16 +90,16 @@ public class SQLShellFragment extends SherlockFragment implements View.OnClickLi
         }
     }
 
+
     private class AsyncCommandTask extends AsyncTask<Void, String, Void> {
         @Override
         protected Void doInBackground(Void... params) {
             if (stdout == null || process == null) return null;
-
             BufferedReader buff = new BufferedReader(
                     new InputStreamReader(stdout));
             try {
                 while (true) {
-                    String stream = ShellOutputFormatter.toHTML(buff.readLine());
+                    String stream = buff.readLine();
                     if (stream == null) break;
                     publishProgress(stream);
                 }
@@ -121,7 +114,7 @@ public class SQLShellFragment extends SherlockFragment implements View.OnClickLi
         @Override
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
-            mResult.append(ShellOutputFormatter.toHTML(values[0]));
+            mQuery.append(values[0]);
         }
     }
 }
