@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--  item normal #fff3f3f3 -->
+    <item android:drawable="@drawable/item_xbg_pressed" android:state_pressed="true" />
+    <item android:drawable="@drawable/item_xbg_pressed" android:state_focused="true" />
+    <item android:drawable="@drawable/item_xbg_drawable" />
+</selector>

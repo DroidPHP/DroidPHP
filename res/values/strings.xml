@@ -24,9 +24,7 @@
     </string>
     <string name="db_server">Database Server</string>
     <string name="mysql">MySQL 5.1.62</string>
-    <string name="mysql_desc">Turn your Android phone or tablet into a database server! Powered by
-        MySQL.
-    </string>
+    <string name="mysql_desc">Turn your Android phone or tablet into a database server! Powered by MySQL. </string>
     <string name="device_status">Device Status</string>
     <string name="none">---</string>
     <string name="server_status">Server Status</string>
@@ -44,6 +42,8 @@
     <string name="core_apps_title">Lighttpd - PHP - MySQL - Msmtp</string>
     <string name="core_apps_not_installed">"Core apps not installed or it may not have installed correctly! Please intall first! Notice: It's requires 50MB of free space on your internal memory!"
     </string>
+
+    <string name="server_loading">Executing</string>
     <string name="turning_on_server">Turning ON Server…</string>
     <string name="turning_on_server_failed">Something went wrong, please try again later!</string>
     <string name="turning_off_server">Turning OFF Server…</string>
@@ -55,6 +55,10 @@
     <string name="uninstalling_core_apps">Uninstalling Core Applications…</string>
     <string name="uninstall_failed">Something went wrong, please reinstall DroidPHP!
     </string>
+
+    <string name="confirm">Confirm</string>
+    <string name="confirm_exit">Exit</string>
+
     <string name="please_wait">Please Wait</string>
     <string name="lighttpd_config">Lighttpd Config</string>
     <string name="php_config">PHP Config</string>
@@ -70,12 +74,15 @@
     </string>
     <string name="core_uninstall">Are you sure you want to remove the core apps from the system?
     </string>
+
+    <string name="core_uninstalling">Uninstalling ...</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="web_db_server_is_running">Web and database server service is running!</string>
     <string name="web_server_is_running">Web server service is running!</string>
     <string name="db_server_is_running">Database server service is running!</string>
     <string name="core_apps_installed">Core applications installed correctly!</string>
+    <string name="core_apps_uninstalled">Core applications uninstalled correctly!</string>
     <string name="install">Install</string>
     <string name="dont_install">"Don't Install"</string>
     <string name="about_app">"Turn your Android devices into a web and database server with DroidPHP, a suite of web developer. This application has been designed for low memory consumption and CPU usage, specially used for smartphone and tablet. Hey, it's free and you don't need a root access to run DroidPHP.
@@ -92,32 +99,16 @@
     </string>
     <string name="mysql_result">SQL Result</string>
 
-    <!-- Nav Drawer Menu Items -->
-    <string-array name="nav_drawer_items">
-        <item>Home</item>
-        <item>MySQL Shell</item>
-        <item>Extension</item>
-        <!--item>GitHub</item-->
-        <item>About</item>
-    </string-array>
 
-    <!-- Nav Drawer List Item Icons -->
-    <!-- Keep them in order as the titles are in -->
-    <array name="nav_drawer_icons">
-        <item>@drawable/web_site</item>
-        <item>@drawable/memory</item>
-        <item>@drawable/cloud</item>
-        <!--item>@drawable/ic_action_github</item-->
-        <item>@drawable/about</item>
-    </array>
+    <!-- packages -->
+    <string name="package_info">Package Information</string>
+    <string name="package_detail" formatted="false">Name : %s\nSize : %s\nInstall : %s</string>
 
-    <!-- Content Description -->
-
-    <string name="drawer_open">Slider Menu Opened</string>
-    <string name="drawer_close">Slider Menu Closed</string>
-
-    <string name="desc_list_item_icon">Item Icon</string>
-
+    <!-- finder -->
+    <string name="finder_title">Loading</string>
+    <string name="finder_message">Loading all configurations</string>
+    <!-- command -->
+    <string name="command_executed">Command Executed</string>
 
     <string name="feedback">Feedback</string>
     <string name="welcome">Welcome page</string>
@@ -125,5 +116,6 @@
     <string name="about_us_rights">Copyright © DroidPHP</string>
     <string name="about_share_friends">Share</string>
     <string name="about_rate_me">Rate Us on Google Play</string>
+
 
 </resources>

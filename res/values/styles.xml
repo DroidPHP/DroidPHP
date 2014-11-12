@@ -41,6 +41,17 @@
         <item name="textAppearance">@style/TextAppearance</item>
     </style>
 
+    <style name="more_tv">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">10.0dip</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+
     <style name="Widget" />
 
 
@@ -76,6 +87,7 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+
     <style name="Theme.DroidPHP.ListItem">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
@@ -103,6 +115,19 @@
     <style name="ListTitleText" parent="TitleText"></style>
 
 
+    <style name="loading_progressbar">
+        <item name="android:maxWidth">36.0dip</item>
+        <item name="android:maxHeight">36.0dip</item>
+        <item name="android:minWidth">36.0dip</item>
+        <item name="android:minHeight">36.0dip</item>
+    </style>
+
+    <style name="loading_progressbar_launch">
+        <item name="android:maxWidth">20.0dip</item>
+        <item name="android:maxHeight">20.0dip</item>
+        <item name="android:minWidth">20.0dip</item>
+        <item name="android:minHeight">20.0dip</item>
+    </style>
     <!-- -->
 
 </resources>

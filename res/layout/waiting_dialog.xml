@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/waiting_bg"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20.0dip">
+
+    <ProgressBar
+        style="@style/loading_progressbar"
+        android:layout_width="23.0dip"
+        android:layout_height="23.0dip"
+        android:indeterminate="false"
+        android:indeterminateDrawable="@anim/loading_small" />
+
+    <TextView
+        android:id="@+id/waiting_dialog_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10.0dip"
+        android:text="Please Wait"
+        android:textColor="@color/white"
+        android:textSize="16.0sp" />
+
+</LinearLayout>

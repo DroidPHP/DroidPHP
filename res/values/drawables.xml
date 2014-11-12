@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="list_download_pressed" type="drawable">#ffdde2e6</item>
+    <item name="list_download_nope" type="drawable">#00000000</item>
+
+    <item name="item_xbg_pressed" type="drawable">#ffe8e8e8</item>
+    <item name="item_xbg_drawable" type="drawable">#fff2f2f2</item>
+
+</resources>
