@@ -36,7 +36,7 @@ public class DialogHelpers {
 
         @Override
         public void onConfirmExit() {
-            //System.exit(0);
+            System.exit(0);
         }
     }
 }
