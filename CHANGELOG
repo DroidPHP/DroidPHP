@@ -1,3 +1,12 @@
+* 1.8.0 (2014-11-13)
+  * Refactored and improved coding standard
+  * Improved UI
+  * Added Uninstall option
+  * Added config file manager
+  * Fixed and Improved Package manager
+  * Added config viewer/editor
+  * Added config parser
+
 * 1.7.0 (2014-8-15)
   * updated from activity to fragment
   * Added Drawer

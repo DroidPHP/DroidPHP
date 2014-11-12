@@ -2,8 +2,8 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.opendroidphp"
-    android:versionCode="17000"
-    android:versionName="1.7.0">
+    android:versionCode="18000"
+    android:versionName="1.8.0">
 
     <uses-sdk
         android:maxSdkVersion="19"
@@ -25,7 +25,7 @@
         android:theme="@style/Theme.DroidPHP">
 
         <activity
-            android:name=".app.ui.ActivityConsole"
+            android:name=".app.ui.ConsoleActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name">
             <intent-filter>
