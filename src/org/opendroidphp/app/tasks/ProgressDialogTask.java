@@ -11,7 +11,7 @@ import android.widget.TextView;
 import org.opendroidphp.R;
 
 
-abstract public class ProgressDialogTask extends AsyncTask<String, String, String> {
+abstract public class ProgressDialogTask<ParameterT, ProgressT, ReturnT> extends AsyncTask<ParameterT, ProgressT, ReturnT> {
 
     protected Handler handler = new Handler(Looper.getMainLooper());
 
@@ -20,9 +20,14 @@ abstract public class ProgressDialogTask extends AsyncTask<String, String, Strin
 
     private TextView tv_title;
     private TextView tv_message;
+    //private ProgressBar progressBar;
 
     private String title;
     private String message;
+
+    public ProgressDialogTask() {
+
+    }
 
     public ProgressDialogTask(Context context) {
         this.context = context;
@@ -38,6 +43,10 @@ abstract public class ProgressDialogTask extends AsyncTask<String, String, Strin
         this(context);
         this.title = title;
         this.message = message;
+    }
+
+    public ProgressDialogTask(Context context, int titleResId, int messageResId) {
+        this(context, context.getString(titleResId), context.getString(messageResId));
     }
 
     protected Dialog createDialog() {
@@ -58,6 +67,7 @@ abstract public class ProgressDialogTask extends AsyncTask<String, String, Strin
         tv_message = (TextView) progress.findViewById(R.id.message);
         tv_message.setText(message);
 
+        //progressBar = (ProgressBar) progress.findViewById(R.id.pb_progress);
         return progress;
     }
 
