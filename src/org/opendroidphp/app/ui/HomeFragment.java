@@ -1,5 +1,6 @@
 package org.opendroidphp.app.ui;
 
+import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +18,12 @@ import android.widget.CompoundButton;
 import com.actionbarsherlock.app.SherlockFragment;
 
 import org.opendroidphp.R;
-import org.opendroidphp.app.AppController;
 import org.opendroidphp.app.Constants;
-import org.opendroidphp.app.common.tasks.DestroyServer;
 import org.opendroidphp.app.common.utils.FileUtils;
-import org.opendroidphp.app.fragments.dialogs.AskForInstallDialogFragment;
-import org.opendroidphp.app.fragments.dialogs.OnEventListener;
+import org.opendroidphp.app.fragments.dialogs.DialogHelpers;
+import org.opendroidphp.app.listeners.OnInflationListener;
 import org.opendroidphp.app.services.ServerService;
+import org.opendroidphp.app.tasks.CommandTask;
 
 import java.util.List;
 
@@ -30,40 +31,49 @@ import de.ankri.views.Switch;
 import eu.chainfire.libsuperuser.Shell;
 
 @android.annotation.TargetApi(Build.VERSION_CODES.GINGERBREAD)
-public class HomeFragment extends SherlockFragment {
+public class HomeFragment extends SherlockFragment implements View.OnClickListener {
 
-    Switch serverSwitch;
-
+    private static OnInflationListener sInflateCallback;
+    private Switch sEnableServer;
     private SharedPreferences preferences;
+    private Context context;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         prepareView(rootView);
         return rootView;
     }
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            sInflateCallback = (OnInflationListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + "must implement OnInflateViewListener");
+        }
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        preferences = PreferenceManager.getDefaultSharedPreferences(getSherlockActivity());
+        context = getSherlockActivity();
+        preferences = PreferenceManager.
+                getDefaultSharedPreferences(getSherlockActivity());
         new AsyncSystemRequirement().execute();
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
         new ConnectionListenerTask().execute();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-
         if (preferences.getBoolean("enable_server_on_app_startup", false)) {
             getSherlockActivity().
                     startService(new Intent(getSherlockActivity(), ServerService.class));
@@ -72,38 +82,36 @@ public class HomeFragment extends SherlockFragment {
     }
 
     protected void prepareView(View view) {
-
-        serverSwitch = (Switch) view.findViewById(R.id.switch_lighttpd_php);
-        serverSwitch.setEnabled(true);
-        serverSwitch.setOnCheckedChangeListener(new ServerListener());
+        sEnableServer = (Switch) view.findViewById(R.id.sw_enable_server);
+        sEnableServer.setEnabled(true);
+        sEnableServer.setOnCheckedChangeListener(new ServerListener());
+        view.findViewById(R.id.ll_mysql_shell).setOnClickListener(this);
+        view.findViewById(R.id.ll_package).setOnClickListener(this);
+        view.findViewById(R.id.ll_vhost).setOnClickListener(this);
+        //view.findViewById(R.id.ll_update).setOnClickListener(this);
+        view.findViewById(R.id.ll_about).setOnClickListener(this);
+        view.findViewById(R.id.ll_uninstall).setOnClickListener(this);
     }
 
-    protected void displayInstallDialog() {
-
-        AskForInstallDialogFragment dialog = new AskForInstallDialogFragment();
-        dialog.setOnEventListener(new OnEventListener() {
-            @Override
-            public void onSuccess() {
-                AppController.toast(getSherlockActivity(), getString(R.string.core_apps_installed));
-                getSherlockActivity().
-                        startService(new Intent(getSherlockActivity(), ServerService.class));
-                new ConnectionListenerTask().execute();
-            }
-
-            @Override
-            public void onFailure() {
-                AppController.toast(getSherlockActivity(), getString(R.string.core_apps_not_installed));
-            }
-        });
-        dialog.show(getFragmentManager(), dialog.getClass().getSimpleName());
-
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.ll_uninstall) {
+            CommandTask task = CommandTask.createForUninstall(context);
+            task.execute();
+        } else
+            sInflateCallback.setOnViewIdReceived(view.getId());
     }
 
-    protected class AsyncSystemRequirement extends AsyncTask<Void, Void, Void> {
+    protected void confirmDialogForInstall() {
+        DialogFragment fragment = DialogHelpers.factoryForInstall(context);
+        fragment.show(getFragmentManager(), getClass().getSimpleName());
+    }
+
+    private class AsyncSystemRequirement extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
             if (!FileUtils.checkIfExecutableExists()) {
-                displayInstallDialog();
+                confirmDialogForInstall();
                 return null;
             }
             return null;
@@ -114,19 +122,21 @@ public class HomeFragment extends SherlockFragment {
         @Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean isEnable) {
 
+            boolean enableSU = preferences.getBoolean("run_as_root", false);
+            String execName = preferences.getString("use_server_httpd", "lighttpd");
+            String bindPort = preferences.getString("server_port", "8080");
+
             if (isEnable) {
-                getSherlockActivity().
-                        startService(new Intent(getSherlockActivity(), ServerService.class));
-
+                context.startService(new Intent(context, ServerService.class));
+                CommandTask task = CommandTask.createForConnect(context, execName, bindPort);
+                task.enableSU(enableSU);
+                task.execute();
             } else {
-                String baseShell = (!preferences.getBoolean("run_as_root", false)) ? "sh" : "su";
+                CommandTask task = CommandTask.createForDisconnect(context);
+                task.enableSU(enableSU);
+                task.execute();
 
-                Runnable destroyServer = new DestroyServer().
-                        setShell(baseShell);
-                Thread thread = new Thread(destroyServer);
-                thread.start();
-
-                NotificationManager notify = (NotificationManager) getSherlockActivity().
+                NotificationManager notify = (NotificationManager) context.
                         getSystemService(Context.NOTIFICATION_SERVICE);
                 notify.cancel(143);
             }
@@ -163,18 +173,16 @@ public class HomeFragment extends SherlockFragment {
             } else {
                 publishProgress("ERROR");
             }
-
             return null;
         }
 
         @Override
         protected void onProgressUpdate(String... values) {
-
             if (values[0].equals("OK")) {
-                serverSwitch.setChecked(true);
+                sEnableServer.setChecked(true);
             }
             if (values[0].equals("ERROR")) {
-                serverSwitch.setChecked(false);
+                sEnableServer.setChecked(false);
             }
         }
     }
