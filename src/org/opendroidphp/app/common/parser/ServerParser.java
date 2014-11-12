@@ -27,13 +27,12 @@ public class ServerParser {
 
     protected static final HashMap<String, String> keyValue = new HashMap<String, String>();
 
-    public Map getKeyValueMap(File file) {
+    public ServerParser(File file) {
         try {
-            return getKeyValueMap(new FileReader(file));
+            getKeyValueMap(new FileReader(file));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
     protected Map getKeyValueMap(FileReader fileReader) throws IOException {
@@ -84,9 +83,7 @@ public class ServerParser {
     }
 
     protected String replaceKeyValue(FileReader fileReader, HashMap<String, String> regexKeyValue) throws IOException {
-
         BufferedReader reader = new BufferedReader(fileReader);
-
         String line;
         StringBuilder builder = new StringBuilder();
         while ((line = reader.readLine()) != null) {
@@ -98,42 +95,56 @@ public class ServerParser {
         return builder.toString();
     }
 
-    public String getKey(String keyName) {
+    public String findByKey(String keyName) {
         return keyValue.get(keyName);
     }
 
-    public boolean isValid() {
+    public boolean hasKey(String keyName) {
+        return null != keyValue.get(keyName) ? true : false;
+    }
 
+    public boolean isValid() {
         return (keyValue.containsKey(NGINX_SERVER_NAME)
                 || keyValue.containsKey(NGINX_SERVER_PORT))
                 || (keyValue.containsKey(LIGHTTPD_SERVER_LOCATION)
                 || keyValue.containsKey(LIGHTTPD_SERVER_PORT));
     }
 
-    public String getServerName() {
-
+    public String getAddress() {
         return keyValue.containsKey(NGINX_SERVER_NAME) ?
                 keyValue.get(NGINX_SERVER_NAME) : (
                 keyValue.containsKey(LIGHTTPD_SERVER_NAME) ?
-                        keyValue.get(LIGHTTPD_SERVER_NAME) : null
-        );
+                        keyValue.get(LIGHTTPD_SERVER_NAME) : "");
     }
 
-    public String getServerPort() {
+    public String getPort() {
 
         return keyValue.containsKey(NGINX_SERVER_PORT) ?
                 keyValue.get(NGINX_SERVER_PORT) : (
                 keyValue.containsKey(LIGHTTPD_SERVER_PORT) ?
-                        keyValue.get(LIGHTTPD_SERVER_PORT) : null
-        );
+                        keyValue.get(LIGHTTPD_SERVER_PORT) : "");
     }
 
-    public String getServerRoot() {
-
+    public String getDocumentRoot() {
         return keyValue.containsKey(NGINX_SERVER_LOCATION) ?
                 keyValue.get(NGINX_SERVER_LOCATION) : (
                 keyValue.containsKey(LIGHTTPD_SERVER_LOCATION) ?
-                        keyValue.get(LIGHTTPD_SERVER_LOCATION) : null
-        );
+                        keyValue.get(LIGHTTPD_SERVER_LOCATION) : "");
+    }
+
+    public boolean isLighttpd() {
+        return hasKey("server.document-root");
+    }
+
+    public boolean isNginx() {
+        return hasKey("listen");
+    }
+
+    public String getType() {
+        if (isNginx())
+            return "nginx";
+        else if (isLighttpd())
+            return "lighttpd";
+        return "";
     }
 }
