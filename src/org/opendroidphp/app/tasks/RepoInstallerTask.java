@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-public class RepoInstallerTask extends ProgressDialogTask {
+public class RepoInstallerTask extends ProgressDialogTask<String, String, String> {
 
     public static final String INSTALL_DONE = "org.opendroidphp.repository.INSTALLED";
     public static final String INSTALL_ERROR = "org.opendroidphp.repository.INSTALL_ERROR";
@@ -46,9 +46,7 @@ public class RepoInstallerTask extends ProgressDialogTask {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         ZipEntry zipEntry;
-
         try {
             FileOutputStream fout;
             while ((zipEntry = zipInputStream.getNextEntry()) != null) {
@@ -78,18 +76,11 @@ public class RepoInstallerTask extends ProgressDialogTask {
 
     @Override
     protected void onProgressUpdate(String... values) {
-
-        setMessage("EXTRACTING: " + values[0]);
-
-        String errorStatus = null;
-        if (values[0].equals(INSTALL_DONE)) {
-            errorStatus = getContext().getString(R.string.core_apps_installed);
-        }
-        if (values[0].equals(INSTALL_ERROR)) {
-            errorStatus = getContext().getString((R.string.core_apps_not_installed));
-        }
-        if (errorStatus != null) {
-            AppController.toast(getContext(), errorStatus);
+        setMessage(values[0]);
+        if (values[0].equals(INSTALL_DONE) || values[0].equals(INSTALL_ERROR)) {
+            int resId = values[0].equals(INSTALL_DONE) ? R.string.core_apps_installed :
+                    R.string.core_apps_not_installed;
+            AppController.toast(getContext(), getContext().getString(resId));
         }
     }
 
