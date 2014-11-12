@@ -57,9 +57,20 @@ public class AppController extends Application {
      *
      * @param r Runnable to run
      */
-    public void runInApplicationThread(Runnable r) {
+    public static void runInApplicationThread(Runnable r) {
         mApplicationHandler.post(r);
     }
+
+    /**
+     * Run a runnable in the background thread
+     *
+     * @param r Runnable to run
+     */
+    public static void runInBackground(Runnable r) {
+        Thread thread = new Thread(r);
+        thread.start();
+    }
+
 
     @Override
     public void onCreate() {
