@@ -48,6 +48,7 @@ public class CommandTask extends ProgressDialogTask<String, String, String> {
         });
         CommandTask task = new CommandTask(c, R.string.server_loading, R.string.turning_on_server);
         task.addCommand(command);
+        task.setNotification(R.string.web_server_is_running);
         return task;
     }
 
@@ -102,6 +103,7 @@ public class CommandTask extends ProgressDialogTask<String, String, String> {
         super.onProgressUpdate(queryRes);
         setMessage(queryRes[0]);
         if (queryRes[0].equals(COMMAND_EXECUTED)) {
+            command_executed = (command_executed == 0) ? R.string.command_executed : command_executed;
             AppController.toast(getContext(), getContext().getString(command_executed));
         }
     }
