@@ -2,8 +2,8 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.opendroidphp"
-    android:versionCode="18000"
-    android:versionName="1.8.0">
+    android:versionCode="19000"
+    android:versionName="1.9.0">
 
     <uses-sdk
         android:maxSdkVersion="19"
