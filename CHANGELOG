@@ -4,6 +4,8 @@
        * GD Library
        * Wddx
        * XDebug
+       * gmp
+       * Phar
   * Optimized php-cgi size
 
 * 1.8.1 (2014-11-14)
