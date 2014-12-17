@@ -1,3 +1,14 @@
+
+* 1.9.0 (2014-12-17)
+  * added following PHP extension:
+       * GD Library
+       * Wddx
+       * XDebug
+  * Optimized php-cgi size
+
+* 1.8.1 (2014-11-14)
+  * fixed crash on enabling server #49
+
 * 1.8.0 (2014-11-13)
   * Refactored and improved coding standard
   * Improved UI
