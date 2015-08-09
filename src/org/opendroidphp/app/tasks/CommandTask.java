@@ -34,19 +34,30 @@ public class CommandTask extends ProgressDialogTask<String, String, String> {
     public CommandTask(Context context, String title, String message) {
         super(context, title, message);
     }
+    
+    public CommandTask(Context context, String title, String message, boolean createDialog) {
+        super(context, title, message, createDialog);
+    }
 
     public CommandTask(Context context, int titleResId, int messageResId) {
         super(context, context.getString(titleResId), context.getString(messageResId));
     }
+    
+    public CommandTask(Context context, int titleResId, int messageResId, boolean createDialog) {
+        super(context, context.getString(titleResId), context.getString(messageResId), createDialog);
+    }
 
     public static CommandTask createForConnect(final Context c, final String execName, final String bindPort) {
+    	return createForConnect(c, execName, bindPort, true);
+    }
+    public static CommandTask createForConnect(final Context c, final String execName, final String bindPort, final boolean createDialog) {
         List<String> command = Collections.unmodifiableList(new ArrayList<String>() {
             {
                 add(CHANGE_PERMISSION.concat(Constants.INTERNAL_LOCATION + "/scripts/server-sh.sh"));
                 add(String.format("%s/scripts/server-sh.sh %s %s", Constants.INTERNAL_LOCATION, execName, bindPort));
             }
         });
-        CommandTask task = new CommandTask(c, R.string.server_loading, R.string.turning_on_server);
+        CommandTask task = new CommandTask(c, R.string.server_loading, R.string.turning_on_server, createDialog);
         task.addCommand(command);
         task.setNotification(R.string.web_server_is_running);
         return task;

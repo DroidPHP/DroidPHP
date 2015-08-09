@@ -30,23 +30,37 @@ abstract public class ProgressDialogTask<ParameterT, ProgressT, ReturnT> extends
     }
 
     public ProgressDialogTask(Context context) {
-        this.context = context;
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                createDialog().show();
-            }
-        });
+        this(context, true);
     }
-
+    
+    public ProgressDialogTask(Context context, final boolean createDialog) {
+    	this.context = context;
+    	if(createDialog) {
+	        handler.post(new Runnable() {
+	            @Override
+	            public void run() {
+	                createDialog().show();
+	            }
+	        });
+    	}
+    }
+    
     public ProgressDialogTask(Context context, String title, String message) {
-        this(context);
+    	this(context, title, message, true);
+    }
+    
+    public ProgressDialogTask(Context context, String title, String message, boolean createDialog) {
+        this(context, createDialog);
         this.title = title;
         this.message = message;
     }
 
     public ProgressDialogTask(Context context, int titleResId, int messageResId) {
         this(context, context.getString(titleResId), context.getString(messageResId));
+    }
+    
+    public ProgressDialogTask(Context context, int titleResId, int messageResId, boolean createDialog) {
+        this(context, context.getString(titleResId), context.getString(messageResId), createDialog);
     }
 
     protected Dialog createDialog() {
@@ -73,13 +87,17 @@ abstract public class ProgressDialogTask<ParameterT, ProgressT, ReturnT> extends
 
     public ProgressDialogTask setTitle(String title) {
         this.title = title;
-        tv_title.setText(title);
+        if(tv_title != null) {
+        	tv_title.setText(title);
+        }
         return this;
     }
 
     public ProgressDialogTask setMessage(String message) {
         this.message = message;
-        tv_message.setText(message);
+        if (tv_message != null) {
+        	tv_message.setText(message);
+        }
         return this;
     }
 

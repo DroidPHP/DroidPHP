@@ -1,5 +1,15 @@
 package org.opendroidphp.app.ui;
 
+import java.util.List;
+
+import org.opendroidphp.R;
+import org.opendroidphp.app.Constants;
+import org.opendroidphp.app.common.utils.FileUtils;
+import org.opendroidphp.app.fragments.dialogs.DialogHelpers;
+import org.opendroidphp.app.listeners.OnInflationListener;
+import org.opendroidphp.app.services.ServerService;
+import org.opendroidphp.app.tasks.CommandTask;
+
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -16,16 +26,6 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 
 import com.actionbarsherlock.app.SherlockFragment;
-
-import org.opendroidphp.R;
-import org.opendroidphp.app.Constants;
-import org.opendroidphp.app.common.utils.FileUtils;
-import org.opendroidphp.app.fragments.dialogs.DialogHelpers;
-import org.opendroidphp.app.listeners.OnInflationListener;
-import org.opendroidphp.app.services.ServerService;
-import org.opendroidphp.app.tasks.CommandTask;
-
-import java.util.List;
 
 import de.ankri.views.Switch;
 import eu.chainfire.libsuperuser.Shell;
@@ -75,8 +75,17 @@ public class HomeFragment extends SherlockFragment implements View.OnClickListen
     public void onStart() {
         super.onStart();
         if (preferences.getBoolean("enable_server_on_app_startup", false)) {
-            getSherlockActivity().
-                    startService(new Intent(getSherlockActivity(), ServerService.class));
+            
+        	Context context = getSherlockActivity();
+        	context.startService(new Intent(context, ServerService.class));
+            
+            final boolean enableSU = preferences.getBoolean("run_as_root", false);
+            final String execName = preferences.getString("use_server_httpd", "lighttpd");
+            final String bindPort = preferences.getString("server_port", "8080");
+        	
+            CommandTask task = CommandTask.createForConnect(context, execName, bindPort);
+            task.enableSU(enableSU);
+            task.execute();
         }
         new ConnectionListenerTask().execute();
     }
